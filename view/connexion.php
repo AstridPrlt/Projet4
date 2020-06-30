@@ -4,6 +4,7 @@
 
     <div class="d-flex">
         <div class="col-6 container m-auto">
+            <h2 class="text-center mb-4">Espace privé</h2>
             <form class="w-75 m-auto">
                 <div class="form-group mx-auto">
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail">
@@ -11,15 +12,11 @@
                 <div class="form-group mx-auto">
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
                 </div>
-                <div class="form-group form-check mx-auto">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Rester connecté</label>
-                </div>
                 <button type="submit" class="btn btn-primary w-100 rounded-pill">Connexion</button>
             </form>
         </div>
     
-        <img class="col-6 vh-100" src="../public/img/alaska2.jpg" alt="">
+        <img class="col-6 vh-100 pr-0" src="../public/img/alaska.jpg" alt="">
     
     </div>
     

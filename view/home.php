@@ -1,15 +1,8 @@
 <?php 
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;port=3308;dbname=testblog;charset=utf8', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    }
-    catch(PDOException $e)
-    {
-            echo '<p>Erreur : '.$e->getMessage() . '</p>';
-    }
+    require '../model/manager.php';
 
-    $reponse = $bdd->query('SELECT * FROM chapter WHERE id=1');
-    $donnee = $reponse->fetch();
+    $reponse = $bdd->query('SELECT * FROM posts WHERE id=1');
+    $data = $reponse->fetch();
     
     $title = "Billet simple pour l'Alaska - Jean Forteroche";
 
@@ -30,7 +23,7 @@
             </div>
         </div>
     </header>
-    <!-- Accueil-->
+    <!-- Présentation de l'auteur-->
     <section class="page-section bg-primary" id="about">
         <div class="container">
             <div class="row justify-content-center">
@@ -44,17 +37,17 @@
             </div>
         </div>
     </section>
-    <!-- Le Roman -->
+    <!-- Le dernier épisode -->
     <section class="page-section" id="services">
         <div class="container">
             <h2 class="text-center mt-0">Le dernier épisode publié</h2>
             <hr class="divider my-4" />
             <div class="card text-center">
-                <h3 class="card-header"><?= $donnee['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $data['id'] . " : " .$data['title']; ?></h3>
                 <div class="card-body">
                 <!--  <h5 class="card-title">Special title treatment</h5> -->
-                  <p class="card-text text-left"><?= $donnee['content']; ?></p>
-                  <a href="roman.php" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
+                  <p class="card-text text-left"><?= substr($data['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $data['id']?>">...Lire la suite</a></p>
+                  <a href="index.php?p=roman" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
                 </div>
               </div>
             </div>
@@ -65,7 +58,7 @@
         <div class="container text-center">
             <h2 class="mb-4">Restons en contact !</h2>
             <hr class="divider my-4" />
-            <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Ecrivez-moi</a>
+            <a class="btn btn-light btn-xl" href="index.php?p=contact">Ecrivez-moi</a>
         </div>
     </section>        
     <!-- Portfolio-->
