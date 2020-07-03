@@ -1,8 +1,11 @@
 <?php 
-    require '../model/manager.php';
+    use \OCR\P4\model\PostManager;
+    require '../model/postManager.php';
+    $postManager = new PostManager;
+    $postManager->dbConnect();
+    $reqLastPost = $postManager->getLastPost();
 
-    $reponse = $bdd->query('SELECT * FROM posts WHERE id=1');
-    $data = $reponse->fetch();
+    $data = $reqLastPost->fetch();
     
     $title = "Billet simple pour l'Alaska - Jean Forteroche";
 
@@ -97,7 +100,7 @@
 
     <?php $content = ob_get_clean();
 
-$reponse->closeCursor();
+$reqLastPost->closeCursor();
 
     require 'layout.php';
 ?>

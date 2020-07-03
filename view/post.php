@@ -14,10 +14,13 @@
         </div>
     </header>
 
+    <!--le corps de la page-->
+
     <a href="index.php?p=roman" class="pt-9 ml-5"><i class="fas fa-arrow-left mr-2"></i><span>Retour à la liste des épisodes</span></a>
 
     <section class="page-section">
 
+    <!--le post-->
         <?php
             $data = $reqPostId->fetch()
          ?>
@@ -32,12 +35,7 @@
             </div>
         </div>
 
-        <?php
-            
-
-            $reqPostId->closeCursor();
-        ?>
-
+        <!--le formulaire pour écrire un nouveau commentaire-->
         <form class="w-50 m-auto">
             <div class="form-group">
                 <input required class="form-control" id="exampleFormControlTextarea1" placeholder="Nom*"></input>
@@ -46,7 +44,29 @@
                 <textarea required class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Commentaire*"></textarea>
             </div>
                 <button type="submit" class="btn btn-primary rounded-pill">Envoyer</button>
-            </form>
+        </form>
+
+        <?php
+            $reqPostId->closeCursor();
+            $comments = $reqPostComments->fetch();
+        ?>
+
+        <!--la liste des commentaires du post-->
+        <div class="list-group w-75 m-auto">
+            <div class="list-group-item list-group-item-action">
+                <div class="d-flex justify-content-between">
+                    <h4 class="mb-1">Par <strong><?= $comments['author'];?></strong></h4>
+                    <small><?= $comments['date_comment'];?></small>
+                </div>
+                <p class="mb-1"><?= $comments['comment'];?></p>
+                <a href="#"><small>Répondre</small></a>
+            </div>
+        </div>
+
+        <?php
+            $reqPostComments->closeCursor();
+        ?>
+
     </section>
 
     <?php $content = ob_get_clean();

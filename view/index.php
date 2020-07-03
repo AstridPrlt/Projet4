@@ -14,7 +14,7 @@ if (isset($_GET['p'])) {
     }
     elseif ($_GET['p'] == 'post') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            postPage();
+            postPage();            
         }
     }
     elseif ($_GET['p'] == 'admin') {
