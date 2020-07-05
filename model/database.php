@@ -3,7 +3,7 @@
     use PDO;
 
    //connexion à la bdd
-    abstract class Manager {
+    abstract class Database {
        
         CONST DB_HOST = 'mysql:host=localhost;port=3308;dbname=blogp4;charset=utf8';
         CONST DB_USER = 'root';

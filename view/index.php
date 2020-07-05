@@ -1,10 +1,10 @@
 <?php
-require '../controller/controller.php';
+require '../controller/frontController.php';
 
 if (isset($_GET['p'])) {
 
     if ($_GET['p'] == 'roman') {
-        romanPage();
+        getAllPost();
     }
     elseif ($_GET['p'] == 'contact') {
         require 'contact.php';
@@ -14,7 +14,7 @@ if (isset($_GET['p'])) {
     }
     elseif ($_GET['p'] == 'post') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            postPage();            
+            getPostById();            
         }
     }
     elseif ($_GET['p'] == 'admin') {

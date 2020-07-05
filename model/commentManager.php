@@ -1,10 +1,11 @@
 <?php
 namespace OCR\P4\model;
-require_once 'manager.php';
+require_once 'database.php';
+use \OCR\P4\model\CommentSetup;
 
-class CommentManager extends Manager {
+class CommentManager extends Database {
 
-    //liste des commentaires pour un article
+    //liste des commentaires pour un post
     public function getComments() 
     {
         $db = $this->dbConnect();
@@ -13,4 +14,15 @@ class CommentManager extends Manager {
         return $reqPostComments;
     }
     
+    //création d'un commentaire
+    public function addComment()
+    {
+
+    }
+
+    //suppression d'un commentaire
+    public function deleteComment()
+    {
+
+    }
 }

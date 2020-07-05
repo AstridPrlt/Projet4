@@ -1,8 +1,9 @@
 <?php
 namespace OCR\P4\model;
-require_once 'manager.php';
+require_once 'database.php';
+use \OCR\P4\model\PostSetup;
 
-class PostManager extends Manager {
+class PostManager extends Database {
 
     //liste des posts
     public function getPosts()
@@ -28,6 +29,24 @@ class PostManager extends Manager {
         $reqLastPost = $this->bdd->query('SELECT * FROM posts WHERE id=(SELECT max(id) FROM posts)');
         //('SELECT * FROM posts ORDER BY id DESC LIMIT 1')
         return $reqLastPost;
+    }
+
+    //création d'un nouveau post
+    public function addPost()
+    {
+
+    }
+
+    //modification d'un post existant
+    public function updatePost()
+    {
+
+    }
+
+    //suppression d'un post
+    public function deletePost()
+    {
+
     }
 
 }
