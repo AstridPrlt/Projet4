@@ -1,12 +1,7 @@
 <?php 
-    use \OCR\P4\model\PostManager;
-    require '../model/postManager.php';
-    $postManager = new PostManager;
-    $postManager->dbConnect();
-    $reqLastPost = $postManager->getLastPost();
+    require_once '../controller/frontController.php';
+    $dataLast = getLastPost();
 
-    $data = $reqLastPost->fetch();
-    
     $title = "Billet simple pour l'Alaska - Jean Forteroche";
 
     ob_start(); ?>
@@ -46,10 +41,10 @@
             <h2 class="text-center mt-0">Le dernier épisode publié</h2>
             <hr class="divider my-4" />
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $data['id'] . " : " .$data['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $dataLast['id'] . " : " .$dataLast['title']; ?></h3>
                 <div class="card-body">
                 <!--  <h5 class="card-title">Special title treatment</h5> -->
-                  <p class="card-text text-left"><?= substr($data['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $data['id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($dataLast['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $dataLast['id']?>">...Lire la suite</a></p>
                   <a href="index.php?p=roman" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
                 </div>
               </div>
@@ -99,8 +94,6 @@
     </div>
 
     <?php $content = ob_get_clean();
-
-$reqLastPost->closeCursor();
 
     require 'layout.php';
 ?>

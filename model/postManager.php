@@ -19,16 +19,22 @@ class PostManager extends Database {
         $db = $this->dbConnect();
         $reqPostId = $this->bdd->prepare('SELECT * FROM posts WHERE id=?');
         $reqPostId->execute(array($_GET['id']));
-        return $reqPostId;
+        $dataId = $reqPostId->fetch();
+        $reqPostId->closeCursor();
+        return $dataId;
+        
     }
 
     //récupération du dernier post rédigé
-    public function getLastPost()
+    public function getLast()
     {
         $db = $this->dbConnect();
         $reqLastPost = $this->bdd->query('SELECT * FROM posts WHERE id=(SELECT max(id) FROM posts)');
         //('SELECT * FROM posts ORDER BY id DESC LIMIT 1')
-        return $reqLastPost;
+        $dataLast = $reqLastPost->fetch();
+        $reqLastPost->closeCursor();
+        return $dataLast;
+        
     }
 
     //création d'un nouveau post

@@ -4,7 +4,7 @@ require '../controller/frontController.php';
 if (isset($_GET['p'])) {
 
     if ($_GET['p'] == 'roman') {
-        getAllPost();
+        getAllPosts();
     }
     elseif ($_GET['p'] == 'contact') {
         require 'contact.php';
@@ -13,8 +13,12 @@ if (isset($_GET['p'])) {
         require 'connexion.php';
     }
     elseif ($_GET['p'] == 'post') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            getPostById();            
+        if (isset($_GET['id']) && $_GET['id'] > 0 && !empty($_POST)) {
+            // addNewComment();
+            getPostById();
+        }
+        if(empty($_POST)) {
+            getPostById();
         }
     }
     elseif ($_GET['p'] == 'admin') {
@@ -25,6 +29,7 @@ if (isset($_GET['p'])) {
     }
 }
 else {
+    // $dataLast = getLastPost();
     require 'home.php';
 }
 

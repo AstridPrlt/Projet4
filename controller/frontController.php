@@ -15,18 +15,32 @@ require '../view/roman.php';
 function getPostById() 
 {
 $postManager = new PostManager;
-$reqPostId = $postManager->getPost();
+$dataId = $postManager->getPost();
 
 $reqComments = new CommentManager;
-$reqPostComments = $reqComments->getComments();
+$commentsId = $reqComments->getComments();
 
 require '../view/post.php';
 }
 
-function getPostComments() 
-{    
-$reqComments = new CommentManager;
-$reqPostComments = $reqComments->getComments();
+// function getPostComments() 
+// {    
+// $reqComments = new CommentManager;
+// $commentsId = $reqComments->getComments();
+// }
+
+function getLastPost()
+{
+    $postManager = new PostManager;
+    $dataLast = $postManager->getLast();
+    return $dataLast;
+    // require '../view/home.php';
+}
+
+function addNewComment()
+{
+    $reqAddNewComment = new CommentManager;
+    $newComment = $reqAddNewComment->addComment();
 }
 
 function admin() 

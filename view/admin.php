@@ -47,10 +47,11 @@
             <div class="card-body">
                 <?= $data['content']?>
             </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary m-3">Modifier</button>
-            <button type="submit" class="btn btn-danger m-3">Supprimer</button>
-        </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-3">Modifier</button>
+                <button type="submit" class="btn btn-primary m-3">Commentaires</button>
+                <button type="submit" class="btn btn-danger m-3">Supprimer</button>
+            </div>
         </div>
     </div>
         <?php } 
