@@ -5,16 +5,6 @@ use \OCR\P4\model\CommentSetup;
 
 class CommentManager extends Database {
 
-    // s'assure de l'intégrité des données envoyées
-    // public $name = dataValid($_POST["nom"]);
-    // public $comment = dataValid($_POST["commentaire"]);
-    
-    // function dataValid($data)
-    // {
-    //     $data = htmlspecialchars($data);
-    //     $data = stripslashes($data);
-    // }
-
     //liste des commentaires pour un post
     public function getComments() 
     {

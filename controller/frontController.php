@@ -2,13 +2,15 @@
 
 use \OCR\P4\model\PostManager;
 use \OCR\P4\model\CommentManager;
+use \OCR\P4\model\AdminManager;
 require_once '../model/postManager.php';
 require_once '../model/commentManager.php';
+require_once '../model/adminManager.php';
 
 function getAllPosts() 
 {
 $postManager = new PostManager;
-$reqPosts = $postManager->getPosts();
+$allPosts = $postManager->getPosts();
 require '../view/roman.php';
 }
 
@@ -22,12 +24,6 @@ $commentsId = $reqComments->getComments();
 
 require '../view/post.php';
 }
-
-// function getPostComments() 
-// {    
-// $reqComments = new CommentManager;
-// $commentsId = $reqComments->getComments();
-// }
 
 function getLastPost()
 {
@@ -45,9 +41,9 @@ function addNewComment()
 
 function admin() 
 {
-$postManager = new PostManager;
-$postManager->dbConnect();
-
-$reqPosts = $postManager->getPosts();
+$adminManager = new AdminManager;
+$allPosts = $adminManager->getPostsAdmin();
+// var_dump($allPosts);
+$commentsId = $adminManager->getCommentsAdmin();
 require '../view/admin.php';
 }

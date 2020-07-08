@@ -17,14 +17,14 @@
     <section class="page-section">
 
         <?php
-            while($data = $reqPosts->fetch())
-        { ?>
+            foreach($allPosts as $dataPost) {
+        ?>
 
         <div class="container mb-5">
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $data['id'] . " : " . $data['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $dataPost['id'] . " : " . $dataPost['title']; ?></h3>
                 <div class="card-body">
-                  <p class="card-text text-left"><?= substr($data['content'], 0, 600) ?><a href="index?p=post&amp;id=<?= $data['id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($dataPost['content'], 0, 600) ?><a href="index?p=post&amp;id=<?= $dataPost['id']?>">...Lire la suite</a></p>
                 </div>
               </div>
             </div>
@@ -32,8 +32,6 @@
 
         <?php
             }
-
-            $reqPosts->closeCursor();
         ?>
 
         </section>

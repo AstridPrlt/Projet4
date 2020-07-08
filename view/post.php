@@ -21,10 +21,6 @@
     <section class="page-section">
 
     <!--le post-->
-        <?php
-        //    $data = $reqPostId->fetch()
-         ?>
-
         <div class="container mb-5">
             <div class="card text-center">
                 <h3 class="card-header text-left">Episode <?= $dataId['id'] . " : " . $dataId['title']; ?></h3>
@@ -48,8 +44,7 @@
         </form>
 
         <?php
-         //   $reqPostId->closeCursor();
-            foreach($commentsId as $commentId) {;
+            foreach($commentsId as $commentId) {
         ?>
 
         <!--la liste des commentaires du post-->
@@ -62,23 +57,21 @@
                 <p class="mb-1"><?= htmlspecialchars($commentId['comment']);?></p>
                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $commentId['id']?>" aria-expanded="false" aria-controls="collapse<?= $commentId['id']?>"><small>Répondre</small></button>
                 <div id="collapse<?= $commentId['id']?>" class="collapse" data-parent="#accordionExample">
-                <form class="form-inline" method="post">
-                    <div class="form-group col-2">
-                        <input required class="form-control" id="exampleFormControlTextarea1" placeholder="Nom*" maxlength="20"></input>
-                    </div>
-                    <div class="form-group mx-2 col-7">
-                        <textarea required class="form-control" id="exampleFormControlTextarea1" placeholder="Commentaire*" rows=1></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary rounded-pill">Envoyer</button>
-                </form>
+                    <form class="form-inline" method="post">
+                        <div class="form-group col-2">
+                            <input required class="form-control" id="exampleFormControlTextarea1" placeholder="Nom*" maxlength="20"></input>
+                        </div>
+                        <div class="form-group mx-2 col-7">
+                            <textarea required class="form-control" id="exampleFormControlTextarea1" placeholder="Commentaire*" rows=1></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded-pill">Envoyer</button>
+                    </form>
+                </div>
             </div>
-        </div>
-            
-
         </div>
 
         <?php
-           } // $reqPostComments->closeCursor();
+           }
         ?>
 
     </section>

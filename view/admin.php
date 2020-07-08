@@ -18,44 +18,65 @@
 
   <body>
     <div class="wrap vh-100">
-            <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-md-12 col-lg-8">
-                    <h1 class="h2 mb-4">Nouvel épisode</h1>
-                    <label>Describe the issue in detail</label>
-                    <div class="form-group">
-                        <textarea id="editor" rows=15></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Créer</button>
-                    </div>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-12 col-lg-8">
+                    <form action="" method="post">
+                        <h1 class="h2 mb-4">Nouvel épisode</h1>
+                        <input type="text" placeholder="Titre" name="title"></input>
+                        <div class="form-group">
+                            <textarea id="editor" rows=15 name="content"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Créer</button>
+                    </form>
                 </div>
+            </div>
         </div>
     </div>
 
     <?php 
-        while($data = $reqPosts->fetch()) {
+        foreach($allPosts as $dataPost) {
         ?>
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
             <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $data['id']?>" aria-expanded="false" aria-controls="collapse<?= $data['id']?>">Episode <?= $data['id']. " : " . $data['title']?></button>
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $dataPost['id']?>" aria-expanded="false" aria-controls="collapse<?= $dataPost['id']?>">Episode <?= $dataPost['id']. " : " . $dataPost['title']?></button>
             </h2>
         </div>
 
-        <div id="collapse<?= $data['id']?>" class="collapse" aria-labelledby="heading<?= $data['id']?>" data-parent="#accordionExample">
+        <div id="collapse<?= $dataPost['id']?>" class="collapse" aria-labelledby="heading<?= $dataPost['id']?>" data-parent="#accordionExample">
             <div class="card-body">
-                <?= $data['content']?>
+                <?= $dataPost['content']?>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary m-3">Modifier</button>
-                <button type="submit" class="btn btn-primary m-3">Commentaires</button>
-                <button type="submit" class="btn btn-danger m-3">Supprimer</button>
+                <button type="button" class="btn btn-primary m-3">Modifier</button>
+                <button type="button" class="btn btn-danger m-3">Supprimer</button>
             </div>
+            <?php
+            foreach($commentsId as $commentId) {
+                if($commentId['id_post'] == $dataPost['id']) {
+            ?>
+        <!--la liste des commentaires du post-->
+            <div class="list-group w-75 m-auto">
+                <div class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="mb-1">Par <strong><?= htmlspecialchars($commentId['author']);?></strong></h4>
+                        <small><?= $commentId['date_comment'];?></small>
+                    </div>
+                    <p class="mb-1"><?= htmlspecialchars($commentId['comment']);?></p>
+                    <button type="button" class="btn btn-danger">&#x274C</button>
+                </div>
+            </div>
+
+            <?php
+                }
+            }
+            ?>
         </div>
     </div>
-        <?php } 
-        $reqPosts->closeCursor();
+        <?php 
+        }
         ?>
         
 

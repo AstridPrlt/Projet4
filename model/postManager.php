@@ -10,7 +10,9 @@ class PostManager extends Database {
     {
         $db = $this->dbConnect();
         $reqPosts = $this->bdd->query('SELECT * FROM posts');
-        return $reqPosts;
+        $allPosts = $reqPosts->fetchAll();
+        $reqPosts->closeCursor();
+        return $allPosts;
     }
 
     //récupération d'un post précis en fonction de l'id
