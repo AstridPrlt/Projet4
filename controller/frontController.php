@@ -42,8 +42,7 @@ function addNewComment()
 function admin() 
 {
 $adminManager = new AdminManager;
-$allPosts = $adminManager->getPostsAdmin();
-// var_dump($allPosts);
+$allPostsAdmin = $adminManager->getPostsAdmin();
 $commentsId = $adminManager->getCommentsAdmin();
 require '../view/admin.php';
 }

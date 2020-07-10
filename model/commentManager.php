@@ -20,7 +20,7 @@ class CommentManager extends Database {
     //création d'un commentaire
     public function addComment()
     {
-        if (!empty(($_POST['nom'])) && strlen(($_POST['nom'])) <= 20 && !empty($_POST['commentaire'])) {
+        if (!empty(($_POST['nom'])) && strlen(($_POST['nom'])) <= 30 && !empty($_POST['commentaire'])) {
         $db = $this->dbConnect();
         $reqAddComment = $this->bdd->prepare('INSERT INTO comments(id_post, author, date_comment, comment) VALUES(?, ?, NOW(), ?)');
         $reqAddComment->execute(array($_POST['getId'], $_POST['nom'], $_POST['commentaire']));

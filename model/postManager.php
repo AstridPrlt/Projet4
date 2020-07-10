@@ -36,25 +36,6 @@ class PostManager extends Database {
         $dataLast = $reqLastPost->fetch();
         $reqLastPost->closeCursor();
         return $dataLast;
-        
-    }
-
-    //création d'un nouveau post
-    public function addPost()
-    {
-
-    }
-
-    //modification d'un post existant
-    public function updatePost()
-    {
-
-    }
-
-    //suppression d'un post
-    public function deletePost()
-    {
-
     }
 
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!--TinyMCE-->
     <script src="https://cdn.tiny.cloud/1/b2hlk206i664rolu1ltqguctqtkyinihjfk583idalf3l1zx/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector: 'textarea#editor', menubar: true});</script>
+    <script>tinymce.init({selector: 'textarea.editor', menubar: true});</script>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../public/img/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -20,14 +20,15 @@
     <div class="wrap vh-100">
         <div class="container">
             <div class="row justify-content-md-center">
+                <h2 class="text-center text-light">Bienvenue sur la page administrateur du site "Billet simple pour l'Alaska" !</h2>
                 <div class="col-md-12 col-lg-8">
-                    <form action="" method="post">
-                        <h1 class="h2 mb-4">Nouvel épisode</h1>
+                    <form action="../controller/newPost.php" method="post">
+                        <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
                         <input type="text" placeholder="Titre" name="title"></input>
                         <div class="form-group">
-                            <textarea id="editor" rows=15 name="content"></textarea>
+                            <textarea class="editor" rows=15 name="content"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Créer</button>
+                        <button type="submit" class="btn btn-primary">Publier</button>
                     </form>
                 </div>
             </div>
@@ -35,7 +36,7 @@
     </div>
 
     <?php 
-        foreach($allPosts as $dataPost) {
+        foreach($allPostsAdmin as $dataPost) {
         ?>
     <div class="accordion" id="accordionExample">
         <div class="card">
@@ -50,8 +51,8 @@
                 <?= $dataPost['content']?>
             </div>
             <div class="text-center">
-                <button type="button" class="btn btn-primary m-3">Modifier</button>
-                <button type="button" class="btn btn-danger m-3">Supprimer</button>
+                <button type="submit" name="update" class="btn btn-primary m-3">Modifier</button>
+                <button type="submit" name="delete" class="btn btn-danger m-3">Supprimer</button>
             </div>
             <?php
             foreach($commentsId as $commentId) {
