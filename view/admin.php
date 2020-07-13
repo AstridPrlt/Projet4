@@ -22,20 +22,37 @@
             <div class="row justify-content-md-center">
                 <h2 class="text-center text-light">Bienvenue sur la page administrateur du site "Billet simple pour l'Alaska" !</h2>
                 <div class="col-md-12 col-lg-8">
+            <?php
+                if(isset($_POST['updatePost'])){
+                    $updateTitle = $_POST['updateTitle'];
+                    $updateContent = $_POST['updateContent'];
+                         ?>
+                        <form action="../controller/newPost.php" method="post">
+                            <input type="hidden" name="getIdPost" value="<?= $_POST['updatePost']?>"></input>
+                            <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>"></input>
+                            <div class="form-group">
+                                <textarea class="editor" rows=15 name="content"><?= $updateContent ?></textarea>
+                            </div>
+                            <button type="submit" name="update" value="<?= $_POST['updatePost']?>" class="btn btn-primary">Publier</button>
+                        </form>
+                    <?php 
+                    } else { ?>
                     <form action="../controller/newPost.php" method="post">
                         <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
                         <input type="text" placeholder="Titre" name="title"></input>
                         <div class="form-group">
                             <textarea class="editor" rows=15 name="content"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Publier</button>
+                        <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
                     </form>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
 
     <?php 
+    var_dump($_POST);
         foreach($allPostsAdmin as $dataPost) {
         ?>
     <div class="accordion" id="accordionExample">
@@ -48,11 +65,20 @@
 
         <div id="collapse<?= $dataPost['id']?>" class="collapse" aria-labelledby="heading<?= $dataPost['id']?>" data-parent="#accordionExample">
             <div class="card-body">
-                <?= $dataPost['content']?>
+                <?php
+
+                echo $dataPost['content'];
+                    ?>
             </div>
             <div class="text-center">
-                <button type="submit" name="update" class="btn btn-primary m-3">Modifier</button>
-                <button type="submit" name="delete" class="btn btn-danger m-3">Supprimer</button>
+                <form method="post">
+                    <input type="hidden" name="updateTitle" value="<?= $dataPost['title']?>"></input>
+                    <input type="hidden" name="updateContent" value="<?= $dataPost['content']?>"></input>
+                    <button type="submit" name="updatePost" value="<?= $dataPost['id']?>" class="btn btn-primary m-3">Modifier</button>
+                </form>
+                <form method="post" action="../controller/newPost.php">
+                    <button type="submit" name="delete" value="<?= $dataPost['id']?>" class="btn btn-danger m-3">Supprimer</button>
+                </form>
             </div>
             <?php
             foreach($commentsId as $commentId) {

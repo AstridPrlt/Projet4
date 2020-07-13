@@ -37,14 +37,26 @@ class AdminManager extends Database {
     }
 
     //modification d'un post existant
-    public function updatePost()
+    public function updatePost($title, $content, $postid)
     {
-
+        if (!empty($title) && strlen($title) <= 80 && !empty($content)) {
+            $db = $this->dbConnect();
+            $reqUpdatePost = $this->bdd->prepare('UPDATE posts SET title = :newTitle, content = :newContent WHERE id = :id');
+            $reqUpdatePost->execute(array(
+                'newTitle' => $title, 
+                'newContent' => $content, 
+                'id' => $postId
+            ));
+            $reqUpdatePost->closeCursor();
+            }
     }
 
     //suppression d'un post
-    public function deletePost()
+    public function deletePost($dataPostId)
     {
-
+        $db = $this->dbConnect();
+        $reqDeletePost = $this->bdd->prepare('DELETE FROM posts WHERE id = ?');
+        $reqDeletePost->execute(array($dataPostId));
+        $reqDeletePost->closeCursor();
     }
 }

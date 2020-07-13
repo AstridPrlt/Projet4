@@ -5,12 +5,12 @@
     <div class="d-flex">
         <div class="col-6 container m-auto">
             <h2 class="text-center mb-4">Espace privé</h2>
-            <form class="w-75 m-auto">
+            <form class="w-75 m-auto" method="post">
                 <div class="form-group mx-auto">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail" name="pseudo">
                 </div>
                 <div class="form-group mx-auto">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" name="pw">
                 </div>
                 <button type="submit" class="btn btn-primary w-100 rounded-pill">Connexion</button>
             </form>
