@@ -36,7 +36,6 @@ exit();
 
 $updatePostId = new AdminManager;
 $updatePostId->updatePost($_POST['title'], $_POST['content'], $_POST['getIdPost']);
-
 header('Location: ../view/index.php?p=admin');
 exit();
 

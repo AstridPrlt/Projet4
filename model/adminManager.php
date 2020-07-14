@@ -8,11 +8,6 @@ class AdminManager extends Database {
     // connexion
     public function connexion()
     {
-        // $db = $this->dbConnect();
-        // $reqDbConnect = $this->bdd->prepare('INSERT INTO user(pseudo, pw) VALUES(?, ?)');
-        // $reqDbConnect->execute(array($pseudo, password_hash($pw, PASSWORD_DEFAULT)));
-        // $reqDbConnect->closeCursor();
-
         $db = $this->dbConnect();
         $reqDbConnect = $this->bdd->query('SELECT * FROM user WHERE id = 5');
         $this->login = $reqDbConnect->fetch();
@@ -51,18 +46,20 @@ class AdminManager extends Database {
     }
 
     //modification d'un post existant
-    public function updatePost($title, $content, $postid)
+    public function updatePost($title, $content, $postId)
     {
         if (!empty($title) && strlen($title) <= 80 && !empty($content)) {
             $db = $this->dbConnect();
             $reqUpdatePost = $this->bdd->prepare('UPDATE posts SET title = :newTitle, content = :newContent WHERE id = :id');
-            $reqUpdatePost->execute(array(
+            $this->update = $reqUpdatePost->execute(array(
                 'newTitle' => $title, 
                 'newContent' => $content, 
                 'id' => $postId
             ));
             $reqUpdatePost->closeCursor();
+            return $this->update;
             }
+
     }
 
     //suppression d'un post

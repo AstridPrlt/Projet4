@@ -52,7 +52,6 @@
     </div>
 
     <?php 
-    var_dump($_POST);
         foreach($allPostsAdmin as $dataPost) {
         ?>
     <div class="accordion" id="accordionExample">
@@ -77,7 +76,7 @@
                     <button type="submit" name="updatePost" value="<?= $dataPost['id']?>" class="btn btn-primary m-3">Modifier</button>
                 </form>
                 <form method="post" action="../controller/adminController.php">
-                    <button type="submit" name="delete" value="<?= $dataPost['id']?>" class="btn btn-danger m-3">Supprimer</button>
+                    <button type="submit" name="delete" value="<?= $dataPost['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">Supprimer</button>
                 </form>
             </div>
             <?php
