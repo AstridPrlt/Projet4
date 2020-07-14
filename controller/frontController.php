@@ -38,11 +38,3 @@ function addNewComment()
     $reqAddNewComment = new CommentManager;
     $newComment = $reqAddNewComment->addComment();
 }
-
-function admin() 
-{
-$adminManager = new AdminManager;
-$allPostsAdmin = $adminManager->getPostsAdmin();
-$commentsId = $adminManager->getCommentsAdmin();
-require '../view/admin.php';
-}

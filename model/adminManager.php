@@ -5,6 +5,20 @@ use \OCR\P4\model\PostSetup;
 
 class AdminManager extends Database {
     
+    // connexion
+    public function connexion()
+    {
+        // $db = $this->dbConnect();
+        // $reqDbConnect = $this->bdd->prepare('INSERT INTO user(pseudo, pw) VALUES(?, ?)');
+        // $reqDbConnect->execute(array($pseudo, password_hash($pw, PASSWORD_DEFAULT)));
+        // $reqDbConnect->closeCursor();
+
+        $db = $this->dbConnect();
+        $reqDbConnect = $this->bdd->query('SELECT * FROM user WHERE id = 5');
+        $this->login = $reqDbConnect->fetch();
+        $reqDbConnect->closeCursor();
+        return $this->login;
+    }
     //liste des posts
     public function getPostsAdmin()
     {

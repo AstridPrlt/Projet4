@@ -1,5 +1,6 @@
 <?php
-require '../controller/frontController.php';
+require_once '../controller/frontController.php';
+require_once '../controller/adminController.php';
 
 if (isset($_GET['p'])) {
 

@@ -27,7 +27,7 @@
                     $updateTitle = $_POST['updateTitle'];
                     $updateContent = $_POST['updateContent'];
                          ?>
-                        <form action="../controller/newPost.php" method="post">
+                        <form action="../controller/adminController.php" method="post">
                             <input type="hidden" name="getIdPost" value="<?= $_POST['updatePost']?>"></input>
                             <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>"></input>
                             <div class="form-group">
@@ -37,7 +37,7 @@
                         </form>
                     <?php 
                     } else { ?>
-                    <form action="../controller/newPost.php" method="post">
+                    <form action="../controller/adminController.php" method="post">
                         <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
                         <input type="text" placeholder="Titre" name="title"></input>
                         <div class="form-group">
@@ -76,7 +76,7 @@
                     <input type="hidden" name="updateContent" value="<?= $dataPost['content']?>"></input>
                     <button type="submit" name="updatePost" value="<?= $dataPost['id']?>" class="btn btn-primary m-3">Modifier</button>
                 </form>
-                <form method="post" action="../controller/newPost.php">
+                <form method="post" action="../controller/adminController.php">
                     <button type="submit" name="delete" value="<?= $dataPost['id']?>" class="btn btn-danger m-3">Supprimer</button>
                 </form>
             </div>
