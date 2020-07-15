@@ -5,6 +5,16 @@ use \OCR\P4\model\PostSetup;
 
 class PostManager extends Database {
 
+    //pour connaître le rang du post dans la liste
+    public function rankPost()
+    {
+        $db = $this->dbConnect();
+        $reqRank = $this->bdd->query('SELECT RANK() OVER (ORDER BY id) AS \'rank\', id, title FROM posts');
+        $this->rank = $reqRank->fetchAll();
+        $reqRank->closeCursor();
+        return $this->rank;
+    }
+
     //liste des posts
     public function getPosts()
     {

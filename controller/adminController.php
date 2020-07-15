@@ -7,6 +7,7 @@ function admin()
 {
 $adminManager = new AdminManager;
 $allPostsAdmin = $adminManager->getPostsAdmin();
+$rank = $adminManager->rankPost();
 $commentsId = $adminManager->getCommentsAdmin();
 require '../view/admin.php';
 }
@@ -22,8 +23,24 @@ function dataValid($data)
     $data = stripslashes($data);
 }
 
+// LA GESTION DES FORMULAIRES
+
+// connexion à la partie admin
+if(isset($_POST['login'])){
+
+$connexion = new AdminManager;
+$connexion->connexion();
+    
+if(($_POST['pseudo'] == $connexion->login['pseudo']) && password_verify($_POST['pw'], $connexion->login['pw'])) {
+    header('Location: ../view/index.php?p=admin');
+    exit();
+} else {
+    header('Location: ../view/index.php?p=connexion');
+    exit();
+}
+
 //création d'un nouveau post
-if(isset($_POST['createPost'])) {
+} else if(isset($_POST['createPost'])) {
 
 $newPost = new AdminManager;
 $newPost->addPost();
@@ -48,18 +65,13 @@ $deletePostId->deletePost($_POST['delete']);
 header('Location: ../view/index.php?p=admin');
 exit();
 
-// connexion à la partie admin
-} else if(isset($_POST['login'])){
+// suppression d'un commentaire
+} else if(isset($_POST['deleteComment'])) {
 
-$connexion = new AdminManager;
-$connexion->connexion();
-
-if(($_POST['pseudo'] == $connexion->login['pseudo']) && password_verify($_POST['pw'], $connexion->login['pw'])) {
+    $deleteComment = new AdminManager;
+    $deleteComment->deleteComment($_POST['deleteComment']);
+    
     header('Location: ../view/index.php?p=admin');
     exit();
-} else {
-    header('Location: ../view/index.php?p=connexion');
-    exit();
-}
 
 }

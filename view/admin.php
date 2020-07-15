@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!--TinyMCE-->
     <script src="https://cdn.tiny.cloud/1/b2hlk206i664rolu1ltqguctqtkyinihjfk583idalf3l1zx/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector: 'textarea.editor', menubar: true});</script>
+    <script>tinymce.init({selector: 'textarea.editor', menubar: true, plugins: "paste"});</script>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../public/img/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -22,11 +22,11 @@
             <div class="row justify-content-md-center">
                 <h2 class="text-center text-light">Bienvenue sur la page administrateur du site "Billet simple pour l'Alaska" !</h2>
                 <div class="col-md-12 col-lg-8">
-            <?php
-                if(isset($_POST['updatePost'])){
+                    <?php
+                    if(isset($_POST['updatePost'])){
                     $updateTitle = $_POST['updateTitle'];
                     $updateContent = $_POST['updateContent'];
-                         ?>
+                    ?>
                         <form action="../controller/adminController.php" method="post">
                             <input type="hidden" name="getIdPost" value="<?= $_POST['updatePost']?>"></input>
                             <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>"></input>
@@ -37,14 +37,14 @@
                         </form>
                     <?php 
                     } else { ?>
-                    <form action="../controller/adminController.php" method="post">
-                        <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
-                        <input type="text" placeholder="Titre" name="title"></input>
-                        <div class="form-group">
-                            <textarea class="editor" rows=15 name="content"></textarea>
-                        </div>
-                        <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
-                    </form>
+                        <form action="../controller/adminController.php" method="post">
+                            <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
+                            <input type="text" placeholder="Titre" name="title"></input>
+                            <div class="form-group">
+                                <textarea class="editor" rows=15 name="content"></textarea>
+                            </div>
+                            <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
+                        </form>
                     <?php } ?>
                 </div>
             </div>
@@ -52,58 +52,52 @@
     </div>
 
     <?php 
-        foreach($allPostsAdmin as $dataPost) {
+        // foreach($allPostsAdmin as $dataPost) {
+            for($i = 0; $i<count($allPostsAdmin); $i++) {
         ?>
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $dataPost['id']?>" aria-expanded="false" aria-controls="collapse<?= $dataPost['id']?>">Episode <?= $dataPost['id']. " : " . $dataPost['title']?></button>
-            </h2>
-        </div>
-
-        <div id="collapse<?= $dataPost['id']?>" class="collapse" aria-labelledby="heading<?= $dataPost['id']?>" data-parent="#accordionExample">
-            <div class="card-body">
-                <?php
-
-                echo $dataPost['content'];
-                    ?>
+                <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $allPostsAdmin[$i]['id']?>" aria-expanded="false" aria-controls="collapse<?= $allPostsAdmin[$i]['id']?>">Episode <?= $rank[$i][0]. " : " . $allPostsAdmin[$i]['title']?></button>
+                </h2>
             </div>
-            <div class="text-center">
-                <form method="post">
-                    <input type="hidden" name="updateTitle" value="<?= $dataPost['title']?>"></input>
-                    <input type="hidden" name="updateContent" value="<?= $dataPost['content']?>"></input>
-                    <button type="submit" name="updatePost" value="<?= $dataPost['id']?>" class="btn btn-primary m-3">Modifier</button>
-                </form>
-                <form method="post" action="../controller/adminController.php">
-                    <button type="submit" name="delete" value="<?= $dataPost['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">Supprimer</button>
-                </form>
-            </div>
-            <?php
-            foreach($commentsId as $commentId) {
-                if($commentId['id_post'] == $dataPost['id']) {
-            ?>
-        <!--la liste des commentaires du post-->
-            <div class="list-group w-75 m-auto">
-                <div class="list-group-item list-group-item-action">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="mb-1">Par <strong><?= htmlspecialchars($commentId['author']);?></strong></h4>
-                        <small><?= $commentId['date_comment'];?></small>
-                    </div>
-                    <p class="mb-1"><?= htmlspecialchars($commentId['comment']);?></p>
-                    <button type="button" class="btn btn-danger">&#x274C</button>
+
+            <div id="collapse<?= $allPostsAdmin[$i]['id']?>" class="collapse" aria-labelledby="heading<?= $allPostsAdmin[$i]['id']?>" data-parent="#accordionExample">
+                <div class="card-body"><?= $allPostsAdmin[$i]['content']; ?></div>
+                <div class="d-flex justify-content-center">
+                    <form method="post">
+                        <input type="hidden" name="updateTitle" value="<?= $allPostsAdmin[$i]['title']?>"></input>
+                        <input type="hidden" name="updateContent" value="<?= $allPostsAdmin[$i]['content']?>"></input>
+                        <button type="submit" name="updatePost" value="<?= $allPostsAdmin[$i]['id']?>" class="btn btn-primary m-3">Modifier</button>
+                    </form>
+                    <form id="delForm" method="post" action="../controller/adminController.php">
+                        <button type="submit" name="delete" value="<?= $allPostsAdmin[$i]['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">Supprimer</button>
+                    </form>
                 </div>
-            </div>
 
-            <?php
-                }
-            }
-            ?>
+                <!--la liste des commentaires du post-->
+                <?php
+                foreach($commentsId as $commentId) {
+                    if($commentId['id_post'] == $allPostsAdmin[$i]['id']) {
+                ?>
+                <div class="list-group w-75 m-auto">
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex mb-1 justify-content-between">
+                            <h4>Par <strong><?= htmlspecialchars($commentId['author']);?></strong></h4>
+                            <small><?= $commentId['date_comment'];?></small>
+                        </div>
+                        <div class="d-flex mb-1 justify-content-between">
+                            <p><?= htmlspecialchars($commentId['comment']);?></p>
+                            <button form="delForm" type="submit" name="deleteComment" value="<?= $commentId['id'] ?>" class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">&#x274C</button>
+                        </div>
+                    </div>
+                </div>
+                <?php }} ?>
+            </div>
         </div>
     </div>
-        <?php 
-        }
-        ?>
+    <?php } ?>
         
 
     <!-- Optional JavaScript -->

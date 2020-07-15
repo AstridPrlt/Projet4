@@ -28,10 +28,4 @@ class CommentManager extends Database {
         }
     }
 
-    //suppression d'un commentaire
-    // public function deleteComment()
-    // {
-    //     $db = $this->dbConnect();
-    //     $reqDelComment = $this->bdd->exec('DELETE FROM comments WHERE id=""');
-    // }
 }

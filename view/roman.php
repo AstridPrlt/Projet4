@@ -17,14 +17,16 @@
     <section class="page-section">
 
         <?php
-            foreach($allPosts as $dataPost) {
+            // foreach($allPosts as $dataPost) {
+            
+                for($i = 0; $i<count($allPosts); $i++) {
         ?>
 
         <div class="container mb-5">
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $dataPost['id'] . " : " . $dataPost['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $rank[$i][0] . " : " . $allPosts[$i]['title']; ?></h3>
                 <div class="card-body">
-                  <p class="card-text text-left"><?= substr($dataPost['content'], 0, 600) ?><a href="index?p=post&amp;id=<?= $dataPost['id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($allPosts[$i]['content'], 0, 600) ?><a href="index?p=post&amp;id=<?= $allPosts[$i]['id']?>&amp;rank=<?= $rank[$i][0]?>">...Lire la suite</a></p>
                 </div>
               </div>
             </div>

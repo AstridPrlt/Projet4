@@ -24,11 +24,21 @@ class AdminManager extends Database {
         return $allPostsAdmin;
     }
     
+    //pour connaître le rang des posts dans la liste
+    public function rankPost()
+    {
+        $db = $this->dbConnect();
+        $reqRank = $this->bdd->query('SELECT RANK() OVER (ORDER BY id) AS \'rank\', id, title FROM posts');
+        $this->rank = $reqRank->fetchAll();
+        $reqRank->closeCursor();
+        return $this->rank;
+    }
+    
     //liste des commentaires pour la partie admin
     public function getCommentsAdmin() 
     {
         $db = $this->dbConnect();
-        $reqPostComments = $this->bdd->query('SELECT * FROM comments ORDER BY date_comment DESC');
+        $reqPostComments = $this->bdd->query('SELECT id, id_post, author, comment, DATE_FORMAT(date_comment, \'%d/%m/%Y %Hh%imin%ss\') AS date_comment FROM comments ORDER BY date_comment DESC');
         $commentsId = $reqPostComments->fetchAll();
         $reqPostComments->closeCursor();
         return $commentsId;
@@ -69,5 +79,14 @@ class AdminManager extends Database {
         $reqDeletePost = $this->bdd->prepare('DELETE FROM posts WHERE id = ?');
         $reqDeletePost->execute(array($dataPostId));
         $reqDeletePost->closeCursor();
+    }
+
+    //suppression d'un commentaire
+    public function deleteComment($commentToDelete)
+    {
+        $db = $this->dbConnect();
+        $reqDeleteComment = $this->bdd->prepare('DELETE FROM comments WHERE id = ?');
+        $reqDeleteComment->execute(array($commentToDelete));
+        $reqDeleteComment->closeCursor();
     }
 }

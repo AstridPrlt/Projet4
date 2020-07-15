@@ -41,10 +41,10 @@
             <h2 class="text-center mt-0">Le dernier épisode publié</h2>
             <hr class="divider my-4" />
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $dataLast['id'] . " : " .$dataLast['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $dataLast[1][0] . " : " .$dataLast[0]['title']; ?></h3>
                 <div class="card-body">
                 <!--  <h5 class="card-title">Special title treatment</h5> -->
-                  <p class="card-text text-left"><?= substr($dataLast['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $dataLast['id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($dataLast[0]['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $dataLast[0]['id']?>&amp;rank=<?= $dataLast[1][0]?>">...Lire la suite</a></p>
                   <a href="index.php?p=roman" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
                 </div>
               </div>

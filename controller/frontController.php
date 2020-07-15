@@ -11,6 +11,7 @@ function getAllPosts()
 {
 $postManager = new PostManager;
 $allPosts = $postManager->getPosts();
+$rank = $postManager->rankPost();
 require '../view/roman.php';
 }
 
@@ -28,7 +29,10 @@ require '../view/post.php';
 function getLastPost()
 {
     $postManager = new PostManager;
-    $dataLast = $postManager->getLast();
+    $lastPost = $postManager->getLast();
+    $getRank = $postManager->rankPost();
+    $rank = end($getRank);
+    $dataLast = array($lastPost, $rank);
     return $dataLast;
     // require '../view/home.php';
 }

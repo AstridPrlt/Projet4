@@ -23,7 +23,7 @@
     <!--le post-->
         <div class="container mb-5">
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $dataId['id'] . " : " . $dataId['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $_GET['rank'] . " : " . $dataId['title']; ?></h3>
                 <div class="card-body">
                   <p class="card-text text-left"><?= $dataId['content']; ?></p>
                 </div>
