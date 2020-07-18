@@ -1,7 +1,7 @@
 <?php
 namespace OCR\P4\model;
 require_once 'database.php';
-use \OCR\P4\model\PostSetup;
+// use \OCR\P4\model\PostSetup;
 
 class AdminManager extends Database {
     
@@ -9,7 +9,7 @@ class AdminManager extends Database {
     public function connexion()
     {
         $db = $this->dbConnect();
-        $reqDbConnect = $this->bdd->query('SELECT * FROM user WHERE id = 5');
+        $reqDbConnect = $this->bdd->query('SELECT * FROM user WHERE pseudo = "webcreation@astrid-perillat.fr"');
         $this->login = $reqDbConnect->fetch();
         $reqDbConnect->closeCursor();
         return $this->login;

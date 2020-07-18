@@ -1,7 +1,38 @@
 <?php
 use \OCR\P4\model\AdminManager;
 require_once '../model/adminManager.php';
+session_start();
 
+class AdminLogin {
+
+    private $_pseudo;
+    private $_pw;
+    public $session;
+    
+    public function login() {
+        
+            $connexion = new AdminManager;
+            $connexion->connexion();
+                
+            if(($_POST['pseudo'] == $connexion->login['pseudo']) && password_verify($_POST['pw'], $connexion->login['pw'])) {
+                $_SESSION['connected'] = 'OK';
+                header('Location: ../view/index.php?p=admin');
+                exit();
+            } else {
+                $_SESSION['erreur'] = "L'email et/ou le mot de passe est faux";
+                header('Location: ../view/index.php?p=connexion');
+                exit();
+            }
+    }
+}
+
+if(isset($_POST['login'])) {
+    $admLogin = new AdminLogin;
+    $admLogin->login();
+}
+
+
+/*
 //génère la page admin avec la liste des posts et leurs commentaires
 function admin() 
 {
@@ -76,3 +107,4 @@ exit();
     exit();
 
 }
+*/

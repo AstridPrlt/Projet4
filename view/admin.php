@@ -29,9 +29,9 @@
                     ?>
                         <form action="../controller/adminController.php" method="post">
                             <input type="hidden" name="getIdPost" value="<?= $_POST['updatePost']?>"></input>
-                            <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>"></input>
+                            <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>" required></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=15 name="content"><?= $updateContent ?></textarea>
+                                <textarea class="editor" rows=15 name="content" required><?= $updateContent ?></textarea>
                             </div>
                             <button type="submit" name="update" value="<?= $_POST['updatePost']?>" class="btn btn-primary">Publier</button>
                         </form>
@@ -39,9 +39,9 @@
                     } else { ?>
                         <form action="../controller/adminController.php" method="post">
                             <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
-                            <input type="text" placeholder="Titre" name="title"></input>
+                            <input type="text" placeholder="Titre" name="title" required></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=15 name="content"></textarea>
+                                <textarea class="editor" rows=15 name="content" required></textarea>
                             </div>
                             <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
                         </form>

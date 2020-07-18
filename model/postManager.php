@@ -1,7 +1,7 @@
 <?php
 namespace OCR\P4\model;
 require_once 'database.php';
-use \OCR\P4\model\PostSetup;
+// use \OCR\P4\model\PostSetup;
 
 class PostManager extends Database {
 

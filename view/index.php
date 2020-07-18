@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../controller/frontController.php';
 require_once '../controller/adminController.php';
 
@@ -19,7 +20,11 @@ if (isset($_GET['p'])) {
         }
     }
     elseif ($_GET['p'] == 'admin') {
-        admin();
+        if($_SESSION['connected'] == 'OK') {
+            admin();
+        } else {
+            header('Location: ../view/index.php?p=connexion');
+        }
     }
     else {
         echo 'Erreur : aucun identifiant de billet envoyé';

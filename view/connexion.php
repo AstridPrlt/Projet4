@@ -1,11 +1,18 @@
-<?php $title = "Connexion";
+<?php 
+// session_start();
+$title = "Connexion";
 
-    ob_start(); ?>
+    ob_start(); 
+    // session_start();
+    // require '../controller/adminLogin.php';    
+    ?>
 
     <div class="d-flex">
         <div class="col-6 container m-auto">
             <h2 class="text-center mb-4">Espace privé</h2>
-            <form class="w-75 m-auto" method="post" action="../controller/adminController.php">
+            <form class="w-75 m-auto" method="post" action='../controller/adminLogin.php'>
+                <?php if(isset($_SESSION['erreur'])) {?>
+                <div class="alert alert-danger" role="alert"><?= $_SESSION['erreur']; unset($_SESSION['erreur']); ?></div><?php } ?>
                 <div class="form-group mx-auto">
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail" name="pseudo">
                 </div>
