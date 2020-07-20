@@ -1,7 +1,6 @@
 <?php
 namespace OCR\P4\model;
 require_once 'database.php';
-use \OCR\P4\model\CommentSetup;
 
 class CommentManager extends Database {
 
@@ -9,7 +8,7 @@ class CommentManager extends Database {
     public function getComments() 
     {
         $db = $this->dbConnect();
-        $reqPostComments = $this->bdd->prepare('SELECT * FROM posts p INNER JOIN comments c ON p.id = c.id_post WHERE p.id=? ORDER BY c.date_comment DESC');
+        $reqPostComments = $this->bdd->prepare('SELECT c.id, id_post, author, comment, DATE_FORMAT(date_comment, \'Le %d/%m/%Y à %H h %i\') AS date_comment FROM posts p INNER JOIN comments c ON p.id = c.id_post WHERE p.id=? ORDER BY c.date_comment DESC');
         $reqPostComments->execute(array($_GET['id']));
         $commentsId = $reqPostComments->fetchAll();
         $reqPostComments->closeCursor();

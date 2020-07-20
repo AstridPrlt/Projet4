@@ -7,38 +7,37 @@ require_once '../model/postManager.php';
 require_once '../model/commentManager.php';
 require_once '../model/adminManager.php';
 
-function getAllPosts() 
+class FrontController {
+
+public function getAllPosts() 
 {
-$postManager = new PostManager;
-$allPosts = $postManager->getPosts();
-$rank = $postManager->rankPost();
-require '../view/roman.php';
+    $postManager = new PostManager;
+    $allPosts = $postManager->getPosts();
+    $rank = $postManager->rankPost();
+    require '../view/roman.php';
 }
 
-function getPostById() 
+public function getPostById() 
 {
-$postManager = new PostManager;
-$dataId = $postManager->getPost();
+    $postManager = new PostManager;
+    $dataId = $postManager->getPost();
 
-$reqComments = new CommentManager;
-$commentsId = $reqComments->getComments();
+    $reqComments = new CommentManager;
+    $commentsId = $reqComments->getComments();
 
-require '../view/post.php';
+    require '../view/post.php';
 }
 
-function getLastPost()
+public function getLastPost()
 {
     $postManager = new PostManager;
     $lastPost = $postManager->getLast();
     $getRank = $postManager->rankPost();
     $rank = end($getRank);
-    $dataLast = array($lastPost, $rank);
-    return $dataLast;
+    return $dataLast = array($lastPost, $rank);
     // require '../view/home.php';
 }
 
-function addNewComment()
-{
-    $reqAddNewComment = new CommentManager;
-    $newComment = $reqAddNewComment->addComment();
 }
+
+$frontController = new FrontController;

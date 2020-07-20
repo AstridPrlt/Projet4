@@ -45,12 +45,12 @@ class AdminManager extends Database {
     }
 
     //création d'un nouveau post
-    public function addPost()
+    public function addPost($title, $content)
     {
-        if (!empty(($_POST['title'])) && strlen(($_POST['title'])) <= 80 && !empty($_POST['content'])) {
+        if (!empty($title) && strlen($title) <= 80 && !empty($content)) {
             $db = $this->dbConnect();
             $reqAddPost = $this->bdd->prepare('INSERT INTO posts(title, content, date_post) VALUES(?, ?, NOW())');
-            $reqAddPost->execute(array($_POST['title'], $_POST['content']));
+            $this->create = $reqAddPost->execute(array($title, $content));
             $reqAddPost->closeCursor();
             }
     }

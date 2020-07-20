@@ -24,6 +24,8 @@ class AdminLogin {
                 exit();
             }
     }
+
+
 }
 
 if(isset($_POST['login'])) {

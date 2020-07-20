@@ -2,16 +2,68 @@
 use \OCR\P4\model\AdminManager;
 require_once '../model/adminManager.php';
 
-//génère la page admin avec la liste des posts et leurs commentaires
-function admin() 
-{
-$adminManager = new AdminManager;
-$allPostsAdmin = $adminManager->getPostsAdmin();
-$rank = $adminManager->rankPost();
-$commentsId = $adminManager->getCommentsAdmin();
-require '../view/admin.php';
+class AdminController {
+
+    //génère la page admin avec la liste des posts et leurs commentaires
+    
+    public function admin() 
+    {
+        $adminManager = new AdminManager;
+        $allPostsAdmin = $adminManager->getPostsAdmin();
+        $rank = $adminManager->rankPost();
+        $commentsId = $adminManager->getCommentsAdmin();
+        require '../view/admin.php';
+    }
+
+    //création d'un nouveau post
+    public function createPost() 
+    {
+        $newPost = new AdminManager;
+        $newPost->addPost($_POST['title'], $_POST['content']);
+        header('Location: ../view/index.php?p=admin');
+        exit();
+    }
+
+    // modification d'un post existant
+    public function updatePost() {
+        $updatePostId = new AdminManager;
+        $updatePostId->updatePost($_POST['title'], $_POST['content'], $_POST['getIdPost']);
+        header('Location: ../view/index.php?p=admin');
+        exit();
+    }
+
+    // suppression d'un post
+    public function deletePost() {
+        $deletePostId = new AdminManager;
+        $deletePostId->deletePost($_POST['delete']);
+        header('Location: ../view/index.php?p=admin');
+        exit();
+    }
+
+    // suppression d'un commentaire
+    public function deleteComment() {
+        $deleteComment = new AdminManager;
+        $deleteComment->deleteComment($_POST['deleteComment']);
+        header('Location: ../view/index.php?p=admin');
+        exit();
+    }
+
 }
 
+    $adminController = new AdminController;
+
+    if(isset($_POST['createPost'])) {
+        $adminController->createPost();
+    } else if(isset($_POST['update'])) {
+        $adminController->updatePost();
+    } else if(isset($_POST['delete'])) {
+        $adminController->deletePost();
+    } else if(isset($_POST['deleteComment'])) {
+        $adminController->deleteComment();
+    }
+
+
+/*
 // $titlePost = dataValid($_POST['title']);
 // $contentPost = dataValid($_POST['content']);
 // $dataPostId = $_POST['getIdPost'];
@@ -76,3 +128,4 @@ exit();
     exit();
 
 }
+*/

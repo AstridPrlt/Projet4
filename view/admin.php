@@ -39,9 +39,9 @@
                     } else { ?>
                         <form action="../controller/adminController.php" method="post">
                             <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
-                            <input type="text" placeholder="Titre" name="title" required></input>
+                            <input required type="text" placeholder="Titre" name="title" class="w-100 mb-2"></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=15 name="content" required></textarea>
+                                <textarea class="editor" rows=15 name="content"></textarea>
                             </div>
                             <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
                         </form>
@@ -88,7 +88,7 @@
                             <small><?= $commentId['date_comment'];?></small>
                         </div>
                         <div class="d-flex mb-1 justify-content-between">
-                            <p><?= htmlspecialchars($commentId['comment']);?></p>
+                            <p class="text-break"><?= htmlspecialchars($commentId['comment']);?></p>
                             <button form="delForm" type="submit" name="deleteComment" value="<?= $commentId['id'] ?>" class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">&#x274C</button>
                         </div>
                     </div>

@@ -35,6 +35,7 @@
         <form class="w-50 m-auto" method="post" action="../controller/newComment.php">
             <div class="form-group">
                 <input type="hidden" name="getId" value="<?= $_GET['id'];?>"></input>
+                <input type="hidden" name="getRank" value="<?= $_GET['rank'];?>"></input>
                 <input required class="form-control" type="text" name="nom" id="exampleFormControlTextarea1" placeholder="Nom*" maxlength="20"></input>
             </div>
             <div class="form-group">
@@ -54,19 +55,8 @@
                     <h4 class="mb-1">Par <strong><?= htmlspecialchars($commentId['author']);?></strong></h4>
                     <small><?= $commentId['date_comment'];?></small>
                 </div>
-                <p class="mb-1"><?= htmlspecialchars($commentId['comment']);?></p>
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $commentId['id']?>" aria-expanded="false" aria-controls="collapse<?= $commentId['id']?>"><small>Répondre</small></button>
-                <div id="collapse<?= $commentId['id']?>" class="collapse" data-parent="#accordionExample">
-                    <form class="form-inline" method="post">
-                        <div class="form-group col-2">
-                            <input required class="form-control" id="exampleFormControlTextarea1" placeholder="Nom*" maxlength="20"></input>
-                        </div>
-                        <div class="form-group mx-2 col-7">
-                            <textarea required class="form-control" id="exampleFormControlTextarea1" placeholder="Commentaire*" rows=1></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary rounded-pill">Envoyer</button>
-                    </form>
-                </div>
+                <p class="mb-1 text-break"><?= nl2br(htmlspecialchars($commentId['comment']));?></p>
+                <button class="btn btn-link btn-block text-left" type="button" name="report" onclick="return alert('Le commentaire a bien été signalé')"><small>Signaler</small></button>
             </div>
         </div>
 

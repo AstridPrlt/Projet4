@@ -1,6 +1,6 @@
 <?php 
     require_once '../controller/frontController.php';
-    $dataLast = getLastPost();
+    $dataLast = $frontController->getLastPost();
 
     $title = "Billet simple pour l'Alaska - Jean Forteroche";
 
