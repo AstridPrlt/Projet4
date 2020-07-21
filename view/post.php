@@ -32,7 +32,7 @@
         </div>
 
         <!--le formulaire pour écrire un nouveau commentaire-->
-        <form class="w-50 m-auto" method="post" action="../controller/newComment.php">
+        <form class="w-50 mx-auto mb-3" method="post" action="../controller/newComment.php">
             <div class="form-group">
                 <input type="hidden" name="getId" value="<?= $_GET['id'];?>"></input>
                 <input type="hidden" name="getRank" value="<?= $_GET['rank'];?>"></input>

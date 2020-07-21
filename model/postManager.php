@@ -4,14 +4,15 @@ require_once 'database.php';
 
 class PostManager extends Database {
 
-    //pour connaître le rang du post dans la liste
-    public function rankPost()
+    //pour connaître le numéro de l'épisode (=son rang du post dans la liste)
+    public function rankPost($idToRank)
     {
         $db = $this->dbConnect();
-        $reqRank = $this->bdd->query('SELECT RANK() OVER (ORDER BY id) AS \'rank\', id, title FROM posts');
-        $this->rank = $reqRank->fetchAll();
+        $reqRank = $this->bdd->prepare('SELECT COUNT(*) FROM posts WHERE id <= ?');
+        $reqRank->execute(array($idToRank));
+        $rank = $reqRank->fetch();
         $reqRank->closeCursor();
-        return $this->rank;
+        return $rank;
     }
 
     //liste des posts
@@ -45,6 +46,15 @@ class PostManager extends Database {
         $dataLast = $reqLastPost->fetch();
         $reqLastPost->closeCursor();
         return $dataLast;
+    }
+
+    public function rankLastPost()
+    {
+        $db = $this->dbConnect();
+        $reqRank = $this->bdd->query('SELECT COUNT(*) FROM posts');
+        $rank = $reqRank->fetch();
+        $reqRank->closeCursor();
+        return $rank;
     }
 
 }
