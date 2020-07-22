@@ -17,10 +17,17 @@
   </head>
 
   <body>
+    <header class="position-absolute w-100 bg-transparent">
+        <div class="d-flex justify-content-between ">
+            <a class="navbar-brand" href="home.php#page-top"><img src="../public/img/logo.png" alt="logo livre"></a>
+            <h2 class="text-center text-white-50">Bienvenue sur la page d'administration du site</h2>
+            <form action="../controller/adminLogin.php" method='post'><button class="btn btn-outline-primary m-2" name="logout">Déconnexion</button></form>
+        </div>
+    </header>
+
     <div class="wrap vh-100">
-        <div class="container">
+        <div class="container pt-5">
             <div class="row justify-content-md-center">
-                <h2 class="text-center text-light">Bienvenue sur la page administrateur du site "Billet simple pour l'Alaska" !</h2>
                 <div class="col-md-12 col-lg-8">
     <!--l'éditeur de texte-->
                     <?php
@@ -30,19 +37,18 @@
                     ?>
                         <form action="../controller/adminController.php" method="post">
                             <input type="hidden" name="getIdPost" value="<?= $_POST['updatePost']?>"></input>
-                            <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>" required></input>
+                            <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>" class="w-100 mb-2" required></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=15 name="content" required><?= $updateContent ?></textarea>
+                                <textarea class="editor" rows=18 name="content" required><?= $updateContent ?></textarea>
                             </div>
                             <button type="submit" name="update" value="<?= $_POST['updatePost']?>" class="btn btn-primary">Publier</button>
                         </form>
                     <?php 
                     } else { ?>
                         <form action="../controller/adminController.php" method="post">
-                            <h2 class="h2 mb-4">Ecrire un nouvel épisode :</h2>
                             <input required type="text" placeholder="Titre" name="title" class="w-100 mb-2"></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=15 name="content"></textarea>
+                                <textarea class="editor" rows=18 name="content"></textarea>
                             </div>
                             <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
                         </form>

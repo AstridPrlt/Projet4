@@ -5,12 +5,12 @@ session_start();
 
 class AdminLogin {
 
-    private $_pseudo;
-    private $_pw;
-    public $session;
+    // private $_pseudo;
+    // private $_pw;
+    // public $session;
     
-    public function login() {
-        
+    public function login() 
+    {    
             $connexion = new AdminManager;
             $connexion->connexion();
                 
@@ -25,12 +25,20 @@ class AdminLogin {
             }
     }
 
-
+    public function logout() 
+    {
+        $_SESSION = array();
+        session_destroy();
+        header('Location: ../view/index.php?p=connexion');
+    }
 }
 
+$admLogin = new AdminLogin;
+
 if(isset($_POST['login'])) {
-    $admLogin = new AdminLogin;
     $admLogin->login();
+} elseif (isset($_POST['logout'])) {
+    $admLogin->logout();
 }
 
 
