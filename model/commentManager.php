@@ -21,10 +21,18 @@ class CommentManager extends Database {
     {
         if (!empty(($_POST['nom'])) && strlen(($_POST['nom'])) <= 30 && !empty($_POST['commentaire'])) {
         $db = $this->dbConnect();
-        $reqAddComment = $this->bdd->prepare('INSERT INTO comments(id_post, author, date_comment, comment) VALUES(?, ?, NOW(), ?)');
-        $reqAddComment->execute(array($_POST['getId'], $_POST['nom'], $_POST['commentaire']));
+        $reqAddComment = $this->bdd->prepare('INSERT INTO comments(id_post, rank_post, author, date_comment, comment) VALUES(?, ?, ?, NOW(), ?)');
+        $reqAddComment->execute(array($_POST['getId'], $_POST['getRank'], $_POST['nom'], $_POST['commentaire']));
         $reqAddComment->closeCursor();
         }
     }
 
+    //signaler un commentaire
+    public function addReportComment($id)
+    {
+        $db = $this->dbConnect();
+        $addReport = $this->bdd->prepare('UPDATE comments SET reported = 1 WHERE id = ?');
+        $addReport->execute(array($id));
+        $addReport->closeCursor();
+    }
 }

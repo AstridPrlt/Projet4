@@ -12,7 +12,20 @@ class NewComment {
         exit();
     }
 
+    public function reportComment() {
+        $reportComment = new CommentManager;
+        $reportComment->addReportComment($_POST['report']);
+
+        header('Location: ../view/index.php?p=post&id='. $_POST['getId'] . '&rank=' . $_POST['getRank']);
+        exit();
+    }
+
 }
 
 $addNewComment = new NewComment;
-$addNewComment->addNewComment();
+
+if(isset($_POST['newComment'])) {
+    $addNewComment->addNewComment();
+} elseif (isset($_POST['report'])) {
+    $addNewComment->reportComment();
+}

@@ -19,7 +19,7 @@ class PostManager extends Database {
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $reqPosts = $this->bdd->query('SELECT * FROM posts');
+        $reqPosts = $this->bdd->query('SELECT * FROM posts ORDER BY id');
         $allPosts = $reqPosts->fetchAll();
         $reqPosts->closeCursor();
         return $allPosts;

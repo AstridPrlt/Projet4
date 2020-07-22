@@ -41,7 +41,7 @@
             <div class="form-group">
                 <textarea required class="form-control" type="text" name="commentaire" id="exampleFormControlTextarea1" rows="3" placeholder="Commentaire*"></textarea>
             </div>
-                <button type="submit" class="btn btn-primary rounded-pill">Envoyer</button>
+                <button type="submit" name="newComment" class="btn btn-primary rounded-pill">Envoyer</button>
         </form>
 
         <?php
@@ -56,7 +56,11 @@
                     <small><?= $commentId['date_comment'];?></small>
                 </div>
                 <p class="mb-1 text-break"><?= nl2br(htmlspecialchars($commentId['comment']));?></p>
-                <button class="btn btn-link btn-block text-left" type="button" name="report" onclick="return alert('Le commentaire a bien été signalé')"><small>Signaler</small></button>
+                <form method="post" action="../controller/newComment.php">
+                    <input type="hidden" name="getId" value="<?= $_GET['id'];?>"></input>
+                    <input type="hidden" name="getRank" value="<?= $_GET['rank'];?>"></input>
+                    <button class="btn btn-link btn-block text-left" type="submit" name="report" value="<?= $commentId['id']?>" onclick="return alert('Le commentaire a bien été signalé')"><small>Signaler</small></button>
+                </form>
             </div>
         </div>
 

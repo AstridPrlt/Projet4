@@ -4,14 +4,14 @@ require_once '../model/adminManager.php';
 
 class AdminController {
 
-    //génère la page admin avec la liste des posts et leurs commentaires
+    //génère la page admin avec la liste des posts et leurs commentaires + la liste des commentaires signalés
     
     public function admin() 
     {
         $adminManager = new AdminManager;
         $allPostsAdmin = $adminManager->getPostsAdmin();
-        $rank = $adminManager->rankPost();
         $commentsId = $adminManager->getCommentsAdmin();
+        $reportedComments = $adminManager->getReportedComments();
         require '../view/admin.php';
     }
 
@@ -36,6 +36,7 @@ class AdminController {
     public function deletePost() {
         $deletePostId = new AdminManager;
         $deletePostId->deletePost($_POST['delete']);
+        $deletePostId->deletePostComments($_POST['delete']);
         header('Location: ../view/index.php?p=admin');
         exit();
     }
@@ -48,6 +49,13 @@ class AdminController {
         exit();
     }
 
+    // validation d'un commentaire signalé
+    public function confirmComment() {
+        $okComment = new AdminManager;
+        $okComment->okReportedComment($_POST['confirmComment']);
+        header('Location: ../view/index.php?p=admin');
+        exit();
+    }
 }
 
     $adminController = new AdminController;
@@ -60,6 +68,8 @@ class AdminController {
         $adminController->deletePost();
     } else if(isset($_POST['deleteComment'])) {
         $adminController->deleteComment();
+    } else if(isset($_POST['confirmComment'])) {
+        $adminController->confirmComment();
     }
 
 

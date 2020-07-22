@@ -47,7 +47,6 @@
                   <p class="card-text text-left"><?= substr($dataLast[0]['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $dataLast[0]['id']?>&amp;rank=<?= $dataLast[1][0]?>">...Lire la suite</a></p>
                   <a href="index.php?p=roman" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
                 </div>
-              </div>
             </div>
         </div>
     </section>

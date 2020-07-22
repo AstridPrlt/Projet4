@@ -22,6 +22,7 @@
             <div class="row justify-content-md-center">
                 <h2 class="text-center text-light">Bienvenue sur la page administrateur du site "Billet simple pour l'Alaska" !</h2>
                 <div class="col-md-12 col-lg-8">
+    <!--l'éditeur de texte-->
                     <?php
                     if(isset($_POST['updatePost'])){
                     $updateTitle = $_POST['updateTitle'];
@@ -51,15 +52,17 @@
         </div>
     </div>
 
+    <!--la liste des épisodes-->            
     <?php 
         // foreach($allPostsAdmin as $dataPost) {
             for($i = 0; $i<count($allPostsAdmin); $i++) {
+                $rank = $adminManager->rankPost($allPostsAdmin[$i][0]);
         ?>
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $allPostsAdmin[$i]['id']?>" aria-expanded="false" aria-controls="collapse<?= $allPostsAdmin[$i]['id']?>">Episode <?= $rank[$i][0]. " : " . $allPostsAdmin[$i]['title']?></button>
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $allPostsAdmin[$i]['id']?>" aria-expanded="false" aria-controls="collapse<?= $allPostsAdmin[$i]['id']?>">Episode <?= $rank[0]. " : " . $allPostsAdmin[$i]['title']?></button>
                 </h2>
             </div>
 
@@ -81,14 +84,14 @@
                 foreach($commentsId as $commentId) {
                     if($commentId['id_post'] == $allPostsAdmin[$i]['id']) {
                 ?>
-                <div class="list-group w-75 m-auto">
+                <div class="list-group w-75 mx-auto mb-2">
                     <div class="list-group-item list-group-item-action">
                         <div class="d-flex mb-1 justify-content-between">
                             <h4>Par <strong><?= htmlspecialchars($commentId['author']);?></strong></h4>
                             <small><?= $commentId['date_comment'];?></small>
                         </div>
                         <div class="d-flex mb-1 justify-content-between">
-                            <p class="text-break"><?= htmlspecialchars($commentId['comment']);?></p>
+                            <p class="text-break"><?= nl2br(htmlspecialchars($commentId['comment']));?></p>
                             <button form="delForm" type="submit" name="deleteComment" value="<?= $commentId['id'] ?>" class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">&#x274C</button>
                         </div>
                     </div>
@@ -98,7 +101,33 @@
         </div>
     </div>
     <?php } ?>
+
+    <!--la liste des commentaires signalés-->
+    <div class="accordion" id="accordionExample2">
+        <div class="card text-white bg-dark">
+
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseReport" aria-expanded="false" aria-controls="collapseReport">Commentaires signalés : <?= count($reportedComments)?></button>
+                </h2>
+            </div>
         
+        <?php foreach($reportedComments as $reportedComment) { 
+            ?>
+            <div id="collapseReport" class="collapse" aria-labelledby="headingReport"           data-parent="#accordionExample2">
+                <div class='d-flex bg-light'>
+                    <div class="card-body text-dark">Episode <?= $reportedComment['rank_post']?> || Par <?= $reportedComment['author']?> le <?= $reportedComment['date_comment']?> : "<?= $reportedComment['comment']; ?>"</div>
+                    <div class="d-flex justify-content-center">
+                        <form method="post" action="../controller/adminController.php">
+                            <button type="submit" name="confirmComment" value="<?= $reportedComment['id']?>" class="btn btn-success m-3">OK</button>
+                            <button type="submit" name="deleteComment" value="<?= $reportedComment['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">&#x274C</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

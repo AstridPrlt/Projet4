@@ -18,7 +18,6 @@
 
         <?php
             // foreach($allPosts as $dataPost) {
-            
                 for($i = 0; $i<count($allPosts); $i++) {
                     $rank = $postManager->rankPost($allPosts[$i][0]);
         ?>
@@ -29,7 +28,6 @@
                 <div class="card-body">
                   <p class="card-text text-left"><?= substr($allPosts[$i]['content'], 0, 600) ?><a href="index?p=post&amp;id=<?= $allPosts[$i]['id']?>&amp;rank=<?= $rank[0]?>">...Lire la suite</a></p>
                 </div>
-              </div>
             </div>
         </div>
 
