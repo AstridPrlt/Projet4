@@ -4,11 +4,7 @@ require_once '../model/adminManager.php';
 session_start();
 
 class AdminLogin {
-
-    // private $_pseudo;
-    // private $_pw;
-    // public $session;
-    
+   
     public function login() 
     {    
             $connexion = new AdminManager;
@@ -30,6 +26,7 @@ class AdminLogin {
         $_SESSION = array();
         session_destroy();
         header('Location: ../view/index.php?p=connexion');
+        exit();
     }
 }
 

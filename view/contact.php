@@ -14,25 +14,41 @@
     </header>
 
     <section class="page-section">
-        <div class="col-6 container m-auto">
-            <form class="w-75 m-auto">
+        <div class="container m-auto">
+            <form class="col-10 col-md-6 m-auto" method="post">
                 <div class="form-group">
-                    <input class="form-control" id="exampleFormControlTextarea1" placeholder="Prénom"></input>
+                    <input type="text" class="form-control" id="exampleFormControlTextarea1" placeholder="Prénom" name="prenom" required></input>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" id="exampleFormControlTextarea1" placeholder="Nom"></input>
+                    <input type="text" class="form-control" id="exampleFormControlTextarea1" placeholder="Nom" name="nom"required></input>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail" name="email" required>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message" name="message" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 rounded-pill">Envoyer</button>
             </form>
         </div>
-    </section>
 
+        <?php
+        if (isset($_POST['message'])) {
+            $mailSent = mail('webcreation@astrid-perillat.fr', 'Contact "Billet simple pour l\'Alaska"', 'Message de ' . $_POST["prenom"] . ' ' . $_POST["nom"] . ' : ' . "\r\n" . $_POST['message'], 'From: ' . $_POST['email']);
+            if($mailSent) {
+                echo '<script>alert("Votre message a été envoyé")</script>';
+			} else {
+			  echo '<script type="text/javascript">alert("Erreur. Le message n\'a pas été envoyé")</script>';
+            }
+        }
+    ?>
+    </section>
+    
+    <script>
+    if (window.history.replaceState) {
+  		window.history.replaceState(null, null, window.location.href);
+    }
+    </script>
     
     <?php $content = ob_get_clean();
 
