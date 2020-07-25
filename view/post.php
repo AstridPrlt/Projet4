@@ -4,7 +4,7 @@
     ob_start(); ?>
 
     <!-- Masthead-->
-    <header class="jumbotron-fluid h-50">
+    <header class="jumbotron-fluid h-50 flex-shrink-0">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-middle">

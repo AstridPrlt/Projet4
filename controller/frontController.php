@@ -1,4 +1,5 @@
 <?php
+namespace OCR\P4\controller;
 
 use \OCR\P4\model\PostManager;
 use \OCR\P4\model\CommentManager;

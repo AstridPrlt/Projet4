@@ -20,7 +20,7 @@
         <link href="../public/css/styles.css" rel="stylesheet" />
     </head>
 
-    <body id="page-top">
+    <body id="page-top" class="d-flex flex-column">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
@@ -41,7 +41,7 @@
 
 
         <!-- Footer-->
-        <footer class="bg-light py-5">
+        <footer class="footer mt-auto bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
         </footer>
         <!-- Bootstrap core JS-->

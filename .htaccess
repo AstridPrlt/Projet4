@@ -1,0 +1,2 @@
+#AllowOverride FileInfo
+ErrorDocument 404 http://localhost/Projet4/view/error.php
