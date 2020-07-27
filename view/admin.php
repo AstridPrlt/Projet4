@@ -62,13 +62,13 @@
     <?php 
         // foreach($allPostsAdmin as $dataPost) {
             for($i = 0; $i<count($allPostsAdmin); $i++) {
-                $rank = $adminManager->rankPost($allPostsAdmin[$i][0]);
+                // $rank = $adminManager->rankPost($allPostsAdmin[$i][0]);
         ?>
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $allPostsAdmin[$i]['id']?>" aria-expanded="false" aria-controls="collapse<?= $allPostsAdmin[$i]['id']?>">Episode <?= $rank[0]. " : " . $allPostsAdmin[$i]['title']?></button>
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $allPostsAdmin[$i]['id']?>" aria-expanded="false" aria-controls="collapse<?= $allPostsAdmin[$i]['id']?>">Episode <?= $allPostsAdmin[$i]['rank_id']. " : " . $allPostsAdmin[$i]['title']?></button>
                 </h2>
             </div>
 
@@ -81,7 +81,7 @@
                         <button type="submit" name="updatePost" value="<?= $allPostsAdmin[$i]['id']?>" class="btn btn-primary m-3">Modifier</button>
                     </form>
                     <form id="delForm" method="post" action="../controller/adminController.php">
-                        <button type="submit" name="delete" value="<?= $allPostsAdmin[$i]['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">Supprimer</button>
+                        <button type="submit" name="delete" value="<?= $allPostsAdmin[$i]['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer l\'épisode et tous ses commentaires ?');">Supprimer</button>
                     </form>
                 </div>
 

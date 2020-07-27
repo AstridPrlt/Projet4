@@ -8,8 +8,8 @@ class CommentManager extends Database {
     public function getComments() 
     {
         $db = $this->dbConnect();
-        $reqPostComments = $this->bdd->prepare('SELECT c.id, id_post, author, comment, DATE_FORMAT(date_comment, \'Le %d/%m/%Y à %H h %i\') AS date_comment FROM posts p INNER JOIN comments c ON p.id = c.id_post WHERE p.id=? ORDER BY c.date_comment DESC');
-        $reqPostComments->execute(array($_GET['id']));
+        $reqPostComments = $this->bdd->prepare('SELECT c.id, id_post, author, comment, DATE_FORMAT(date_comment, \'Le %d/%m/%Y à %H h %i\') AS date_comment FROM posts p INNER JOIN comments c ON p.id = c.id_post WHERE p.rank_id=? ORDER BY c.date_comment DESC');
+        $reqPostComments->execute(array($_GET['rank']));
         $commentsId = $reqPostComments->fetchAll();
         $reqPostComments->closeCursor();
         return $commentsId;

@@ -23,16 +23,16 @@ class AdminManager extends Database {
         return $allPostsAdmin;
     }
     
-    //pour connaître le numéro de l'épisode (=son rang du post dans la liste)
-    public function rankPost($idToRank)
-    {
-        $db = $this->dbConnect();
-        $reqRank = $this->bdd->prepare('SELECT COUNT(*) FROM posts WHERE id <= ?');
-        $reqRank->execute(array($idToRank));
-        $rank = $reqRank->fetch();
-        $reqRank->closeCursor();
-        return $rank;
-    }
+    // //pour connaître le numéro de l'épisode (=son rang du post dans la liste)
+    // public function rankPost($idToRank)
+    // {
+    //     $db = $this->dbConnect();
+    //     $reqRank = $this->bdd->prepare('SELECT COUNT(*) FROM posts WHERE id <= ?');
+    //     $reqRank->execute(array($idToRank));
+    //     $rank = $reqRank->fetch();
+    //     $reqRank->closeCursor();
+    //     return $rank;
+    // }
     
     //liste des commentaires pour la partie admin
     public function getCommentsAdmin() 
@@ -49,7 +49,7 @@ class AdminManager extends Database {
     {
         if (!empty($title) && strlen($title) <= 80 && !empty($content)) {
             $db = $this->dbConnect();
-            $reqAddPost = $this->bdd->prepare('INSERT INTO posts(title, content, date_post) VALUES(?, ?, NOW())');
+            $reqAddPost = $this->bdd->prepare('INSERT INTO posts(title, content, date_post, rank_id) VALUES(?, ?, NOW(), (SELECT COUNT(id) + 1 FROM(SELECT * FROM posts) AS getRank))');
             $this->create = $reqAddPost->execute(array($title, $content));
             $reqAddPost->closeCursor();
             }
@@ -79,6 +79,14 @@ class AdminManager extends Database {
         $reqDeletePost = $this->bdd->prepare('DELETE FROM posts WHERE id = ?');
         $reqDeletePost->execute(array($dataPostId));
         $reqDeletePost->closeCursor();
+
+        $updateRanks = $this->bdd->prepare('UPDATE posts SET rank_id = rank_id - 1 WHERE id > :id');
+        $updateRanks->execute(array('id' => $dataPostId));
+        $updateRanks->closeCursor();
+
+        $updateRanksComments = $this->bdd->prepare('UPDATE comments SET rank_post = rank_post - 1 WHERE id_post > :id');
+        $updateRanksComments->execute(array('id' => $dataPostId));
+        $updateRanksComments->closeCursor();
     }
 
     //suppression d'un commentaire

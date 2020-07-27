@@ -26,14 +26,15 @@ public function getPostById()
     $commentsId = $reqComments->getComments();
 
     require '../view/post.php';
+    return $dataId;
 }
 
 public function getLastPost()
 {
     $postManager = new PostManager;
-    $lastPost = $postManager->getLast();
-    $getRank = $postManager->rankLastPost();
-    return $dataLast = array($lastPost, $getRank);
+    $dataLast = $postManager->getLast();
+    // $getRank = $postManager->rankLastPost();
+    return $dataLast;
     // require '../view/home.php';
 }
 

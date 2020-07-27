@@ -1,6 +1,9 @@
 <?php 
     $title = "Billet simple pour l'Alaska - Le Roman";
 
+    if(!isset($dataId['id'])){
+        header('Location: ../view/error.php');
+    }
     ob_start(); ?>
 
     <!-- Masthead-->
@@ -23,7 +26,7 @@
     <!--le post-->
         <div class="container mb-5">
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $_GET['rank'] . " : " . $dataId['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $dataId['rank_id'] . " : " . $dataId['title']; ?></h3>
                 <div class="card-body">
                   <p class="card-text text-left"><?= $dataId['content']; ?></p>
                 </div>
@@ -34,7 +37,7 @@
         <!--le formulaire pour écrire un nouveau commentaire-->
         <form class="w-50 mx-auto mb-3" method="post" action="../controller/newComment.php">
             <div class="form-group">
-                <input type="hidden" name="getId" value="<?= $_GET['id'];?>"></input>
+                <input type="hidden" name="getId" value="<?= $dataId['id'];?>"></input>
                 <input type="hidden" name="getRank" value="<?= $_GET['rank'];?>"></input>
                 <input required class="form-control" type="text" name="nom" id="exampleFormControlTextarea1" placeholder="Nom*" maxlength="20"></input>
             </div>
@@ -57,7 +60,7 @@
                 </div>
                 <p class="mb-1 text-break"><?= nl2br(htmlspecialchars($commentId['comment']));?></p>
                 <form method="post" action="../controller/newComment.php">
-                    <input type="hidden" name="getId" value="<?= $_GET['id'];?>"></input>
+                    <input type="hidden" name="getId" value="<?= $dataId['id'];?>"></input>
                     <input type="hidden" name="getRank" value="<?= $_GET['rank'];?>"></input>
                     <button class="btn btn-link btn-block text-left" type="submit" name="report" value="<?= $commentId['id']?>" onclick="return alert('Le commentaire a bien été signalé')"><small>Signaler</small></button>
                 </form>

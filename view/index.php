@@ -1,7 +1,6 @@
 <?php
 //session_start();
 use \OCR\P4\controller\FrontController;
-// use Exception;
 
 require_once '../controller/frontController.php';
 require_once '../controller/adminController.php';
@@ -9,10 +8,13 @@ require_once '../controller/adminLogin.php';
 
 class Router {
 
+
     public function run()
     {
 
+
         $frontController = new FrontController;
+        $adminController = new AdminController;
 
     if (isset($_GET['p'])) {
 
@@ -26,12 +28,12 @@ class Router {
             require 'connexion.php';
         }
         elseif ($_GET['p'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['rank']) && $_GET['rank'] > 0) {
+            if (isset($_GET['rank']) && $_GET['rank'] > 0) {
                 $frontController->getPostById();
             }
             else {
                 header('Location: ../view/index.php?p=roman');
-            }
+            }    
         }
         elseif ($_GET['p'] == 'admin') {
             if(isset($_SESSION['connected']) && $_SESSION['connected'] == 'OK') {
@@ -42,20 +44,15 @@ class Router {
         }
         else {
             header('Location: error.php');
-            // echo 'erreur';
-            // var_dump($_SERVER);
         }
-
-    } else {
-        // (end(explode("/", $_SERVER['REQUEST_URI'])) == 'home.php')
-        // $frontController->getLastPost();
-        // $dataLast = $frontController->dataLast;
+    
+    } 
+    else {
         header('Location: ../view/home.php');
-        // var_dump($_SERVER);
-        // require '../view/home.php';
-    }
     }
 
+
+    }
 }
 
 $router = new Router;
