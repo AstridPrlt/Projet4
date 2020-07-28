@@ -33,9 +33,7 @@ public function getLastPost()
 {
     $postManager = new PostManager;
     $dataLast = $postManager->getLast();
-    // $getRank = $postManager->rankLastPost();
     return $dataLast;
-    // require '../view/home.php';
 }
 
 }

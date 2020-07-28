@@ -8,7 +8,7 @@ class NewComment {
         $newComment = new CommentManager;
         $newComment->addComment();
 
-        header('Location: ../view/index.php?p=post&id='. $_POST['getId'] . '&rank=' . $_POST['getRank']);
+        header('Location: ../view/index.php?p=post&rank=' . $_POST['getRank']);
         exit();
     }
 
@@ -16,7 +16,7 @@ class NewComment {
         $reportComment = new CommentManager;
         $reportComment->addReportComment($_POST['report']);
 
-        header('Location: ../view/index.php?p=post&id='. $_POST['getId'] . '&rank=' . $_POST['getRank']);
+        header('Location: ../view/index.php?p=post&rank=' . $_POST['getRank']);
         exit();
     }
 

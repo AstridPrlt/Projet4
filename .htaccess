@@ -1,2 +1,22 @@
 #AllowOverride FileInfo
 ErrorDocument 404 http://localhost/Projet4/view/error.php
+
+DirectoryIndex /view/index.php
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+#--------------------------------------------------
+# Règles de réécriture d'URL :
+#--------------------------------------------------
+
+#RewriteRule ^/view/home.html$ /view/home.php [L]
+#RewriteRule ^roman.html$  http://localhost/Projet4/view/index.php?p=roman [L]
+#RewriteRule ^contact.html$  /view/index.php?p=contact [L]
+#RewriteRule ^connexion.html$  /view/index.php?p=connexion [L]
+
+#pour les posts :
+RewriteRule ^post-([0-9]+).html$   /view/index.php?p=post&rank=$1 [L]

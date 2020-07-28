@@ -43,7 +43,7 @@
             <div class="card text-center">
                 <h3 class="card-header text-left">Episode <?= $dataLast['rank_id'] . " : " .$dataLast['title']; ?></h3>
                 <div class="card-body">
-                  <p class="card-text text-left"><?= substr($dataLast['content'], 0, 600); ?><a href="index?p=post&amp;rank=<?= $dataLast['rank_id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($dataLast['content'], 0, 600); ?><a href="index.php?p=post&amp;rank=<?= $dataLast['rank_id']?>">...Lire la suite</a></p>
                   <a href="index.php?p=roman" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
                 </div>
             </div>

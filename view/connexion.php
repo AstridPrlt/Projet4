@@ -1,14 +1,12 @@
 <?php 
-// session_start();
-$title = "Connexion";
+    $title = "Connexion";
 
-    ob_start(); 
-    // session_start();
-    // require '../controller/adminLogin.php';    
+    ob_start();   
     ?>
 
-    <div class="d-flex">
-        <div class="col-6 container m-auto">
+    <div class="container-fluid vh-100">
+    <div class="row vh-100">
+        <div class="col col-sm-6 m-auto">
             <h2 class="text-center mb-4">Espace privé</h2>
             <form class="w-75 m-auto" method="post" action='../controller/adminLogin.php'>
                 <?php if(isset($_SESSION['erreur'])) {?>
@@ -23,8 +21,8 @@ $title = "Connexion";
             </form>
         </div>
     
-        <img class="col-6 vh-100 pr-0" src="../public/img/alaska.jpg" alt="">
-    
+        <img class="d-none d-sm-inline-block col-sm-6 pr-0 vh-100" src="../public/img/alaska.jpg" alt="">
+    </div>
     </div>
     
     <?php $content = ob_get_clean();
