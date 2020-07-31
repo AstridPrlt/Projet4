@@ -1,6 +1,15 @@
 <?php
+<<<<<<< Updated upstream
 
 //class PostManager extends Manager {
+=======
+namespace OCR\P4\model;
+
+require_once '../autoloader.php';
+use \OCR\P4\model\Database;
+
+class PostManager extends Database {
+>>>>>>> Stashed changes
 
     //liste des posts
     function getPosts()
@@ -12,6 +21,7 @@
         return $reqPosts;
     }
 
+<<<<<<< Updated upstream
     //gestion d'un post précis
     //function getPost()
 
@@ -24,5 +34,8 @@
         return $reqPostId;
     }
 //}
+=======
+}
+>>>>>>> Stashed changes
 
 ?>

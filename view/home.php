@@ -1,5 +1,10 @@
 <?php 
+<<<<<<< Updated upstream
     require '../model/manager.php';
+=======
+    require_once '../controller/FrontController.php';
+    $dataLast = $frontController->getLastPost();
+>>>>>>> Stashed changes
 
     $reponse = $bdd->query('SELECT * FROM posts WHERE id=1');
     $data = $reponse->fetch();
