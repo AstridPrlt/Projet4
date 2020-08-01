@@ -1,14 +1,7 @@
 <?php 
-<<<<<<< Updated upstream
-    require '../model/manager.php';
-=======
     require_once '../controller/FrontController.php';
     $dataLast = $frontController->getLastPost();
->>>>>>> Stashed changes
 
-    $reponse = $bdd->query('SELECT * FROM posts WHERE id=1');
-    $data = $reponse->fetch();
-    
     $title = "Billet simple pour l'Alaska - Jean Forteroche";
 
     ob_start(); ?>
@@ -48,15 +41,14 @@
             <h2 class="text-center mt-0">Le dernier épisode publié</h2>
             <hr class="divider my-4" />
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $data['id'] . " : " .$data['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $dataLast['rank_id'] . " : " .$dataLast['title']; ?></h3>
                 <div class="card-body">
-                <!--  <h5 class="card-title">Special title treatment</h5> -->
-                  <p class="card-text text-left"><?= substr($data['content'], 0, 600); ?><a href="index?p=post&amp;id=<?= $data['id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($dataLast['content'], 0, 600); ?><a href="../post-<?= $dataLast['rank_id']?>.html">...Lire la suite</a></p>
                   <a href="index.php?p=roman" class="btn btn-primary btn-xl">Voir tous les épisodes</a>
                 </div>
-              </div>
             </div>
         </div>
+        <!-- "index.php?p=post&amp;rank=<?= $dataLast['rank_id']?>" -->
     </section>
     <!-- Contact-->
     <section class="page-section bg-dark text-white">
@@ -101,8 +93,6 @@
     </div>
 
     <?php $content = ob_get_clean();
-
-$reponse->closeCursor();
 
     require 'layout.php';
 ?>

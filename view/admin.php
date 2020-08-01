@@ -17,19 +17,15 @@
   </head>
 
   <body>
+  <header class="position-absolute w-100 bg-transparent">
+        <div class="d-flex justify-content-between ">
+            <a class="navbar-brand" href="home.php"><img src="../public/img/logo.png" alt="logo livre"></a>
+            <h2 class="text-center text-white-50">Bienvenue sur la page d'administration du site</h2>
+            <form action="../controller/AdminLogin.php" method='post'><button class="btn btn-outline-primary m-2" name="logout">Déconnexion</button></form>
+        </div>
+    </header>
+
     <div class="wrap vh-100">
-<<<<<<< Updated upstream
-            <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-md-12 col-lg-8">
-                    <h1 class="h2 mb-4">Nouvel épisode</h1>
-                    <label>Describe the issue in detail</label>
-                    <div class="form-group">
-                        <textarea id="editor" rows=15></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Créer</button>
-                    </div>
-=======
         <div class="container pt-5">
             <div class="row justify-content-md-center">
                 <div class="col-md-12 col-lg-8">
@@ -58,26 +54,17 @@
                             <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
                         </form>
                     <?php } ?>
->>>>>>> Stashed changes
                 </div>
         </div>
     </div>
 
+    <!--la liste des épisodes--> 
     <?php 
-<<<<<<< Updated upstream
-        while($data = $reqPosts->fetch()) {
-=======
             for($i = 0; $i<count($allPostsAdmin); $i++) {
->>>>>>> Stashed changes
         ?>
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
-<<<<<<< Updated upstream
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $data['id']?>" aria-expanded="false" aria-controls="collapse<?= $data['id']?>">Episode <?= $data['id']. " : " . $data['title']?></button>
-            </h2>
-=======
                 <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<?= $allPostsAdmin[$i]['id']?>" aria-expanded="false" aria-controls="collapse<?= $allPostsAdmin[$i]['id']?>">Episode <?= $allPostsAdmin[$i]['rank_id']. " : " . $allPostsAdmin[$i]['title']?></button>
                 </h2>
@@ -115,19 +102,18 @@
                 </div>
                 <?php }} ?>
             </div>
->>>>>>> Stashed changes
         </div>
+    </div>
 
-        <div id="collapse<?= $data['id']?>" class="collapse" aria-labelledby="heading<?= $data['id']?>" data-parent="#accordionExample">
-            <div class="card-body">
-                <?= $data['content']?>
+    <!--la liste des commentaires signalés-->
+    <div class="accordion" id="accordionExample2">
+        <div class="card text-white bg-dark">
+
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseReport" aria-expanded="false" aria-controls="collapseReport">Commentaires signalés : <?= count($reportedComments)?></button>
+                </h2>
             </div>
-<<<<<<< Updated upstream
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary m-3">Modifier</button>
-            <button type="submit" class="btn btn-danger m-3">Supprimer</button>
-        </div>
-=======
         
         <?php foreach($reportedComments as $reportedComment) { 
             ?>
@@ -143,12 +129,8 @@
                 </div>
             </div>
         <?php } ?>
->>>>>>> Stashed changes
         </div>
     </div>
-        <?php } 
-        $reqPosts->closeCursor();
-        ?>
         
 
     <!-- Optional JavaScript -->

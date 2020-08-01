@@ -10,7 +10,7 @@ Options +FollowSymlinks
 RewriteEngine on
 
 #--------------------------------------------------
-# Règles de réécriture d'URL : !!SEULEMENT POUR L'HEBERGEUR!!
+# Règles de réécriture d'URL : SEULEMENT POUR L'HEBERGEUR
 #--------------------------------------------------
 
 #RewriteRule ^/view/home.html$ /view/home.php [L]

@@ -17,23 +17,20 @@
     <section class="page-section">
 
         <?php
-            while($data = $reqPosts->fetch())
-        { ?>
+                for($i = 0; $i<count($allPosts); $i++) {
+        ?>
 
         <div class="container mb-5">
             <div class="card text-center">
-                <h3 class="card-header text-left">Episode <?= $data['id'] . " : " . $data['title']; ?></h3>
+                <h3 class="card-header text-left">Episode <?= $allPosts[$i]['rank_id'] . " : " . $allPosts[$i]['title']; ?></h3>
                 <div class="card-body">
-                  <p class="card-text text-left"><?= substr($data['content'], 0, 600) ?><a href="index?p=post&amp;id=<?= $data['id']?>">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($allPosts[$i]['content'], 0, 600) ?><a href="../post-<?= $allPosts[$i]['rank_id']?>.html">...Lire la suite</a></p>
                 </div>
-              </div>
             </div>
         </div>
 
         <?php
             }
-
-            $reqPosts->closeCursor();
         ?>
 
         </section>
