@@ -12,12 +12,12 @@
                 <?php if(isset($_SESSION['erreur'])) {?>
                 <div class="alert alert-danger" role="alert"><?= $_SESSION['erreur']; unset($_SESSION['erreur']); ?></div><?php } ?>
                 <div class="form-group mx-auto">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail" name="pseudo" required>
                 </div>
                 <div class="form-group mx-auto">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" name="pw" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 rounded-pill">Connexion</button>
+                <button type="submit" name="login" class="btn btn-primary w-100 rounded-pill">Connexion</button>
             </form>
         </div>
     

@@ -24,7 +24,7 @@
             <div class="card text-center">
                 <h3 class="card-header text-left">Episode <?= $allPosts[$i]['rank_id'] . " : " . $allPosts[$i]['title']; ?></h3>
                 <div class="card-body">
-                  <p class="card-text text-left"><?= substr($allPosts[$i]['content'], 0, 600) ?><a href="../post-<?= $allPosts[$i]['rank_id']?>.html">...Lire la suite</a></p>
+                  <p class="card-text text-left"><?= substr($allPosts[$i]['content'], 0, 600) ?><a href="index.php?p=post&id=<?= $allPosts[$i]['id']?>&rank=<?= $allPosts[$i]['rank_id']?>">...Lire la suite</a></p>
                 </div>
             </div>
         </div>

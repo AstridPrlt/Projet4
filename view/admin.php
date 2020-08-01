@@ -40,7 +40,7 @@
                             <input type="hidden" name="getIdPost" value="<?= $_POST['updatePost']?>"></input>
                             <input type="text" placeholder="Titre" name="title" value="<?= $updateTitle ?>" class="w-100 mb-2" required></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=18 name="content" required><?= $updateContent ?></textarea>
+                                <textarea id="editor" rows=18 name="content"><?= $updateContent ?></textarea>
                             </div>
                             <button type="submit" name="update" value="<?= $_POST['updatePost']?>" class="btn btn-primary">Publier</button>
                         </form>
@@ -49,7 +49,7 @@
                         <form action="../controller/AdminController.php" method="post">
                             <input required type="text" placeholder="Titre" name="title" class="w-100 mb-2"></input>
                             <div class="form-group">
-                                <textarea class="editor" rows=18 name="content"></textarea>
+                                <textarea id="editor" rows=18 name="content"></textarea>
                             </div>
                             <button type="submit" name="createPost" class="btn btn-primary">Publier</button>
                         </form>
@@ -104,6 +104,7 @@
             </div>
         </div>
     </div>
+    <?php } ?>
 
     <!--la liste des commentaires signalés-->
     <div class="accordion" id="accordionExample2">
@@ -115,20 +116,20 @@
                 </h2>
             </div>
         
-        <?php foreach($reportedComments as $reportedComment) { 
-            ?>
-            <div id="collapseReport" class="collapse" aria-labelledby="headingReport"           data-parent="#accordionExample2">
-                <div class='d-flex bg-light'>
-                    <div class="card-body text-dark">Episode <?= $reportedComment['rank_post']?> || Par <?= $reportedComment['author']?> le <?= $reportedComment['date_comment']?> : "<?= $reportedComment['comment']; ?>"</div>
-                    <div class="d-flex justify-content-center">
-                        <form method="post" action="../controller/AdminController.php">
-                            <button type="submit" name="confirmComment" value="<?= $reportedComment['id']?>" class="btn btn-success m-3">OK</button>
-                            <button type="submit" name="deleteComment" value="<?= $reportedComment['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">&#x274C</button>
-                        </form>
+            <?php foreach($reportedComments as $reportedComment) { 
+                ?>
+                <div id="collapseReport" class="collapse" aria-labelledby="headingReport"           data-parent="#accordionExample2">
+                    <div class='d-flex bg-light'>
+                        <div class="card-body text-dark">Episode <?= $reportedComment['rank_post']?> || Par <?= $reportedComment['author']?> le <?= $reportedComment['date_comment']?> : "<?= $reportedComment['comment']; ?>"</div>
+                        <div class="d-flex justify-content-center">
+                            <form method="post" action="../controller/AdminController.php">
+                                <button type="submit" name="confirmComment" value="<?= $reportedComment['id']?>" class="btn btn-success m-3">OK</button>
+                                <button type="submit" name="deleteComment" value="<?= $reportedComment['id']?>" class="btn btn-danger m-3" onclick="return confirm('Etes-vous sûr de vouloir supprimer ?');">&#x274C</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } ?>
         </div>
     </div>
         
