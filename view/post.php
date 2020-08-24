@@ -2,7 +2,7 @@
     $title = "Billet simple pour l'Alaska - Le Roman";
 
     if(!isset($dataId['id'])){
-        header('Location: ../view/error.php');
+        header('Location: ../error.php');
     }
     ob_start(); ?>
 

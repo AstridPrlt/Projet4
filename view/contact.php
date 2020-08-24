@@ -28,7 +28,8 @@
                 <div class="form-group">
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 rounded-pill">Envoyer</button>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill mb-3">Envoyer</button>
+                <small class="text-justify">En cliquant sur ce bouton, j'accepte que les informations saisies dans ce formulaire soit traitées et utilisées pour permettre de me recontacter.</small>
             </form>
         </div>
 
